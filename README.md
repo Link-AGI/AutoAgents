@@ -100,7 +100,7 @@ If you find our work and this repository useful, please consider giving a star :
 ```bibtex
 @article{chen2023auto,
   title={AutoAgents: The Automatic Agents Generation Framework},
-  author={Chen, Guangyao and Dong, Siwei and Shu, Yu and Su, Jie and Börje, Karlsson and Jie, Fu and Yemin, Shi},
+  author={Chen, Guangyao and Dong, Siwei and Shu, Yu and Zhang, Ge and Jaward, Sesay and Börje, Karlsson and Fu, Jie and Shi, Yemin},
   journal={arXiv preprint},
   year={2023}
 }
