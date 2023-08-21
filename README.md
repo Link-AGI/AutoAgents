@@ -94,9 +94,21 @@ We will respond to all questions within 2-3 business days.
 
 [Apache-2.0 license](https://raw.githubusercontent.com/LinkSoul-AI/AutoAgents/main/LICENSE)
 
+## Citation
+
+If you find our work and this repository useful, please consider giving a star :star: and citation :beer::
+```bibtex
+@article{chen2023auto,
+  title={AutoAgents: The Automatic Agents Generation Framework},
+  author={Chen, Guangyao and Dong, Siwei and Shu, Yu and Su, Jie and Börje, Karlsson and Jie, Fu and Yemin, Shi},
+  journal={arXiv preprint},
+  year={2023}
+}
+```
+
 ## Wechat Group
 
-<img src=".github/QRcode.jpg" alt="Wechat Group" width="300"/>
+<img src=".github/QRcode.jpg" alt="Wechat Group" width="200"/>
 
 ## Acknowledgements
 This code base has borrowed several implementations from this [link](https://github.com/geekan/MetaGPT)
