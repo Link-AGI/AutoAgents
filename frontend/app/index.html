@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Agents Generation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./libs/bootsrap.min.css">
+
+    <!-- for paper div -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"> -->
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script defer src="./static/js/fontawesome.all.min.js"></script> -->
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+
+    <!-- for LLaSM demo -->
+    <link rel="stylesheet" href="./static/css/bootsrap.min.css">
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <!-- / for paper div -->
+
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://keunhong.com">
+                    <span class="icon">
+
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://huggingface.co/spaces/LinkSoul/LLaSM" target="_blank">
+                            LLaSM
+                        </a>
+                        <a class="navbar-item" href="https://huggingface.co/spaces/LinkSoul/Chinese-LLaVA"
+                            target="_blank">
+                            Chinese-LLaVA
+                        </a>
+                        <a class="navbar-item" href="https://huggingface.co/LinkSoul/Chinese-Llama-2-7b"
+                            target="_blank">
+                            Chinese-Llama-2-7B
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">AutoAgents: The Automatic Agents Generation Framework
+                        </h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block" style="color:#09ed0d;font-weight:normal;">
+                                Guangyao Chen<sup>1,2*</sup>,
+                            </span>
+                            <span class="author-block" style="color:#f68946;font-weight:normal;">
+                                Siwei Dong<sup>1*</sup>,</span>
+                            <span class="author-block" style="color:#f68946;font-weight:normal;">
+                                Yu Shu<sup>1*</sup>,</span>
+                            <span class="author-block" style="color:#008AD7;font-weight:normal;">
+                                Jaward Sesay<sup>4</sup>,
+                            </span>
+                            <span class="author-block" style="color:#008AD7;font-weight:normal;">
+                                Börje Karlsson<sup>4</sup>,
+                            </span>
+                            <span class="author-block" style="color:#cc00d7;font-weight:normal;">
+                                Jie Fu<sup>3†</sup>,
+                            </span>
+                            <span class="author-block" style="color:#f68946;font-weight:normal;">
+                                Yemin Shi<sup>1†</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"
+                                style="color:#f68946;font-weight:normal;"><sup>1</sup>LinkSoul.AI, </span>
+                            <span class="author-block" style="color:#09ed0d;font-weight:normal;"><sup>2</sup>Peking
+                                University, </span>
+                            <span class="author-block" style="color:#cc00d7;font-weight:normal;"><sup>3</sup>Hong Kong
+                                University of Science and Technology, </span>
+                            <span class="author-block" style="color:#008AD7;font-weight:normal;"><sup>4</sup>Beijing
+                                Academy of Artificial Intelligence</span>
+                        </div>
+
+                        <div>
+                            <em class="author-block"><sup>*</sup>Equal contribution</em>
+                            <br>
+                            <em class="author-block"><sup>&dagger;</sup>Corresponding authors:
+                                ymshi@linksoul.ai,&nbsp; jiefu@ust.hk</em>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="#" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <!-- Demo Link. -->
+                                <span class="link-block">
+                                    <a href="#" target="_self"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-atom"></i>
+                                        </span>
+                                        <span>Demo</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/LinkSoul-AI/AutoAgents" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auto Agent Demo -->
+    <iframe src="demo.html" style="width:100%; height: 100%; border: 0; position: absolute;"></iframe>
+    <!-- / Auto Agent Demo -->
+
+</body>
+
+</html>

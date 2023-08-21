@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Agents Generation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./libs/bootsrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-left col-fixed">
+                <!-- Left column for Agents -->
+                <div class="card">
+                    <div class="card-header text-center header-left">
+                       <h3>Agents</h3> 
+                    </div>
+                    <ul class="list-group list-group-flush" id="agentsList">
+                        <!-- Agents will be dynamically added here -->
+                    </ul>
+                    <div class="form-group p-4 api-form">
+                        <input type="text" class="form-control p-4 mb-2" id="openai-api-key" placeholder="Input your OpenAI api key here">
+                        <input type="text" class="form-control p-4" id="serp-api-key" placeholder="Input your SerpApi key here">
+                        <div class="text-center mt-2"><a href="https://serpapi.com/users/sign_up?plan=free" target="_blank">Get your SerpApi key</a></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-6 col-center">
+                <!-- Center column for Chat view -->
+                <div class="card chat">
+                    <div class="card-header text-center header-center">
+                        <div class="toggle-buttons">
+                            <svg class="toggle-btn m-2" id="toggleLeft" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                                
+                                <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8Zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5Z"/>
+                              </svg>
+                            <svg class="toggle-btn m-2" id="toggleRight" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+                              </svg>
+                        </div>
+                        <h3>Auto Agents Chat</h3>
+                    </div>
+                    <div class="card-body" id="chatView">
+                        <div class="intro text-center" id="intro">
+                            <h1>Auto Agents Chat</h1>
+                            <p>Generate different roles for GPTs to form a collaborative entity for complex tasks.</p>
+                        </div>
+                        <!-- Chat messages will be dynamically added here -->
+                        <p id="calling-next-agent" class="calling-message fs" data-content="Calling Next Agent... " data-index="0"></p>
+                        <button id="interruptButton" class="btn btn-primary mb-3" style="display: none;">Stop</button>
+                        <button id="clearButton" class="btn btn-primary mb-3" style="display: none;">Clear</button>
+                    </div>
+                    <div class="row justify-content-center example-messages" id="example-messages">
+                        <div class="col-sm-6 examples">
+                            <div class="col-sm-12 left-ex">
+                                <button class="example-input mx-2 m-2 btn btn-outline-primary w-100" data-input="Plan a tour for architectural photography in Barcelona">
+                                    <h5>Plan a tour</h5>
+                                    <p class="mb-0">for architectural photography in Barcelona</p>
+                                </button>
+                                <button class="example-input mx-2 m-2 btn btn-outline-primary w-100" data-input="Show me a code snippet for a cli snake game">
+                                    <h5>Show me a code snippet</h5>
+                                    <p class="mb-0">for a cli snake game</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 examples">
+                            <div class="col-sm-12">
+                                <button class="example-input m-2 btn btn-outline-primary w-100" data-input="Explain options trading if I'm familiar with buying and selling stocks">
+                                    <h5>Explain options trading</h5>
+                                    <p class="mb-0">if I'm familiar with buying and selling stocks</p>
+                                </button>
+                                <button class="example-input m-2 btn btn-outline-primary w-100" data-input="Make a content strategy for a local weekend events">
+                                    <h5>Make a content strategy</h5>
+                                    <p class="mb-0">for a local weekend events</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control p-4" placeholder="Type your message here..." id="inputMessage">
+                        <button class="btn btn-primary" type="button" id="sendButton">
+                            <svg id="sendSVG" width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="h-4 w-4 m-1 md:m-0" stroke-width="2"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-right col-fixed">
+                <!-- Right column for Tasks -->
+                <div class="card">
+                    <div class="card-header text-center header-right">
+                        <h3>Tasks and progress</h3> 
+                    </div>
+                    <div class="card-body" id="taskView">
+                        <!-- Tasks will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./libs/bootstrap.bundle.min.js"></script>
+    <script src="./js/app_websocket.js"></script>
+</body>
+</html>

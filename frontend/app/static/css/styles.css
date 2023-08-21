@@ -1,0 +1,215 @@
+#avatar-video, #talking-vid {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 320px;
+    margin-top: 12px;
+}
+video { 
+  border-top-right-radius: 3rem;
+  border-top-left-radius: 3rem;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 120px;
+  z-index: -1;
+}
+.btn {
+    border-radius: 1.5rem !important;
+    z-index: 2;
+    /* background-color: #9e9e9e !important; */
+    border:none;
+}
+
+.iceConnectionState-connected, 
+.iceConnectionState-completed,
+.peerConnectionState-connected,
+#ice-gathering-status-label,
+.ice-status-label,
+.signalingState-stable,
+.streamingState-empty {
+    color: green;
+}
+#video-select {
+    box-shadow: 0 0 2rem rgba(0,0,0,.14)!important;
+    border-radius: 0.7rem;
+    padding: 12px;
+    text-align: end !important;
+}
+.video-select {
+   position: absolute;
+   padding-top: 5px;
+}
+
+#user-text {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0 0 2rem rgba(0,0,0,.14)!important;
+    border-radius: 1.5rem;
+    border: 1px;
+}
+#chat-window {
+    box-shadow: 0 0 2rem rgba(0,0,0,.14)!important;
+    border: none;
+    border-radius: 1.5rem;
+}
+.col-md-12 {
+    box-shadow: 0 0 2rem rgba(0,0,0,.14)!important;
+    border-radius: 3rem;
+    padding: 20px;
+    padding-bottom: 80px;
+    width: 750px;
+    /* width: 485px; */
+}
+.input-group-append {
+    right: 10px;
+    position: absolute;
+    z-index: 2;
+}
+
+.input-group-append {
+  transition: width 0.8s ease-in-out;
+  border-radius: 1.5rem !important;
+}
+
+.expanded {
+  width: 100%;
+  background-image: url('./images/record_waveform.gif');
+  background-position: center;
+  height: 59px;
+  top: 2px;
+  left: 0px;
+  text-align: end;
+  cursor: pointer;
+}
+
+.expanded button {
+  margin-top: -3px;
+  margin-right: 3px;
+}
+
+
+.btn-secondary {
+  background-color: #198754 !important;
+}
+.input-group .btn {
+    position: relative;
+    z-index: 2;
+    width: 50px;
+    border-radius: 8px !important;
+}
+#info {
+    text-align: center !important;
+    border-radius: 3rem;
+    font-size: 14px;
+}
+#info a {
+    color: darkred;
+    text-decoration: underline;
+  }
+  
+  .final {
+    color: black;
+    padding-right: 3px; 
+  }
+  .interim {
+    color: gray;
+  }
+  .select-avatar {
+    margin-top: 130px !important;
+  }
+  #results {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1.4px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    overflow-y: scroll;
+    height: 400px;
+    margin: 0 0 20px 0;
+    border-radius: 0.7rem;
+  }
+  /* #llasaLoading {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1.4px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    overflow-y: scroll;
+    height: 400px;
+    margin: 0 0 20px 0;
+    border-radius: 0.7rem;
+    justify-content: center;
+  } */
+  .btn-success {
+    background: #9e9e9e !important;
+  }
+
+  .sent-message {
+    margin-left: 37px !important;
+  }
+  #start_button {
+    border: 0;
+    background-color:transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  #delete_button {
+    border: 0;
+    background-color:transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  .small {
+    background-color: #d1e7dd !important;
+    font-size: 14px;
+    color: black !important;
+    width: fit-content;
+  }
+  .time {
+    text-align: center !important;
+  }
+  #start_img, #delete_img, #send_text_img {
+    width: 30px;
+    height: 30px;
+  }
+  #send_button {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+  }
+  #status {
+    font-size: 8px;
+    color: #cacecccc;
+  }
+  
+  .btn-primary, .btn-danger {
+    width: 100px;
+    margin: auto;
+  }
+  .alert {
+    padding:0.5rem !important ;
+  }
+  select {
+    padding: 5px 5px;
+  }
+  #select_dialect {
+    width: 80px;
+  }
+  #select_language {
+    width: 60px
+  }
+  @media screen and (max-width: 767px) {
+      #select_dialect {
+        position: absolute;
+        right: 0;
+      } 
+  }
+  
+  @media screen and (min-width: 768px) {
+    select {
+      margin-right: 10px;
+    }
+  }
+
+  
