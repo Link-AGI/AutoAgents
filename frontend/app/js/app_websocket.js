@@ -5,7 +5,7 @@ let taskId = null;
 let imageBaseDir = "../images/";
 
 const apiHost = 'wss://demo.linksoul.ai/autoagents/api';
-// const apiHost = ((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + window.location.pathname + "api";
+const apiHost = ((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + window.location.pathname + "api";
 
 // Helpers
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
