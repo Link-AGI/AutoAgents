@@ -545,7 +545,6 @@ async function sendMessage(exampleMessage) {
         interruptButton.textContent = 'Stop';
         interruptButton.style.color = 'black';
         interruptButton.style.display = '';
-        console.info(document.getElementById('calling-next-agent'));
         document.getElementById('calling-next-agent').style.display = 'block';
     }
 }
