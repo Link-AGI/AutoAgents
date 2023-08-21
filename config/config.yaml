@@ -1,0 +1,33 @@
+# DO NOT MODIFY THIS FILE, create a new key.yaml, define OPENAI_API_KEY.
+# The configuration of key.yaml has a higher priority and will not enter git
+
+#### if OpenAI
+
+# OPENAI_API_KEY: "YOUR_API_KEY"
+# OPENAI_API_BASE: "YOUR_API_BASE"
+# OPENAI_PROXY: "http://127.0.0.1:8118"
+OPENAI_API_MODEL: "gpt-4"
+MAX_TOKENS: 1500
+RPM: 10
+
+#### if Anthropic
+#Anthropic_API_KEY: "YOUR_API_KEY"
+
+#### if AZURE, check https://github.com/openai/openai-cookbook/blob/main/examples/azure/chat.ipynb
+
+#OPENAI_API_TYPE: "azure"
+#OPENAI_API_BASE: "YOUR_AZURE_ENDPOINT"
+#OPENAI_API_KEY: "YOUR_AZURE_API_KEY"
+#OPENAI_API_VERSION: "YOUR_AZURE_API_VERSION"
+#DEPLOYMENT_ID: "YOUR_DEPLOYMENT_ID"
+
+#### for Search
+
+## Visit https://serpapi.com/ to get key.
+# SERPAPI_API_KEY: "YOUR_API_KEY"
+## Visit https://console.cloud.google.com/apis/credentials to get key.
+# GOOGLE_API_KEY: "YOUR_API_KEY"
+## Visit https://programmablesearchengine.google.com/controlpanel/create to get id.
+# GOOGLE_CSE_ID: "YOUR_CSE_ID"
+## Visit https://serper.dev/ to get key.
+# SERPER_API_KEY: "YOUR_API_KEY"
