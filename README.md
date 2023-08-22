@@ -43,7 +43,7 @@ Online demo: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
 
 ```bash
 git clone https://github.com/LinkSoul-AI/AutoAgents
-cd autoagents
+cd AutoAgents
 python setup.py install
 ```
 

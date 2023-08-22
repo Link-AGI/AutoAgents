@@ -44,7 +44,7 @@ AutoAgents是一个基于LLM的自动代理生成实验的实验性开源应用�
 
 ```bash
 git clone https://github.com/LinkSoul-AI/AutoAgents
-cd autoagents
+cd AutoAgents
 python setup.py install
 ```
 
