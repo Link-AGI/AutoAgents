@@ -33,9 +33,9 @@ AutoAgents is an experimental open-source application for An Automatic Agents Ge
 Online demo: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
 
 - **Rumor Verification**
-<video src='.github/rumor-verification.mp4'></video>
+<video src='https://github.com/LinkSoul-AI/AutoAgents/raw/main/.github/rumor-verification.mp4'></video>
 - **Gluttonous Snake**
-<video src='.github/snake-game-demo-en.mp4'></video>
+<video src='https://github.com/LinkSoul-AI/AutoAgents/raw/main/.github/snake-game-demo-en.mp4'></video>
 
 ## Installation and Usage
 
