@@ -114,7 +114,15 @@ class SearchAndSummarize(Action):
         
         query = context[-1].content
         # logger.debug(query)
-        rsp = await self.search_engine.run(query)
+        try_count = 0
+        while try_count < 3:
+            try:
+                rsp = await self.search_engine.run(query)
+                break
+            except ValueError as e:
+                try_count += 1
+                continue
+
         self.result = rsp
         if not rsp:
             logger.error('empty rsp...')
