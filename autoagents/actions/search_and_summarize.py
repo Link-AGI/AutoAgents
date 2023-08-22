@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import time
+
 from autoagents.actions import Action
 from autoagents.config import Config
 from autoagents.logs import logger
@@ -115,16 +117,16 @@ class SearchAndSummarize(Action):
         query = context[-1].content
         # logger.debug(query)
         try_count = 0
-        rsp = None
-        while try_count < 3:
+        while True:
             try:
                 rsp = await self.search_engine.run(query)
                 break
             except ValueError as e:
                 try_count += 1
                 if try_count >= 3:
+                    # Retry 3 times to fail
                     raise e
-                continue
+                time.sleep(1)
 
         self.result = rsp
         if not rsp:
