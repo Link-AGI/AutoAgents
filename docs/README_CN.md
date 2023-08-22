@@ -31,8 +31,10 @@ AutoAgents是一个基于LLM的自动代理生成实验的实验性开源应用�
 - **动作**：执行计划中专家角色的具体动作，如调用工具或输出结果。
 
 ## 演示
-在线演示: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+在线演示： 
+- [DEMO / HuggingFace Spaces](https://huggingface.co/spaces/LinkSoul/AutoAgents)
 
+视频演示：
 - **谣言验证**
 <video src='https://github.com/shiyemin/AutoAgents/assets/1501158/41898e0d-4137-450c-ad9b-bfb9b8c1d27b.mp4'></video>
 - **贪吃蛇游戏**
@@ -66,7 +68,7 @@ cp config/config.yaml config/key.yaml
 ### 使用
 - 命令行模式:
 ```python
-python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERPAPI_KEY --idea "Plan a tour for architectural photography in Barcelona"
+python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERPAPI_KEY --idea "Is LK-99 really a room temperature superconducting material?"
 ```
 - Websocket服务模式:
 ```python
