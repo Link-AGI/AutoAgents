@@ -30,7 +30,12 @@ AutoAgents is an experimental open-source application for An Automatic Agents Ge
 - **Actions**: The specific actions of the expert roles in the execution plan, such as calling tools or outputting results.
 
 ## Demo
-[DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+Online demo: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+
+- **Rumor Verification**
+<video src='.github/rumor-verification.mp4'></video>
+- **Gluttonous Snake**
+<video src='.github/snake-game-demo-en.mp4'></video>
 
 ## Installation and Usage
 
