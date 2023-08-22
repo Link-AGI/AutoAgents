@@ -115,12 +115,15 @@ class SearchAndSummarize(Action):
         query = context[-1].content
         # logger.debug(query)
         try_count = 0
+        rsp = None
         while try_count < 3:
             try:
                 rsp = await self.search_engine.run(query)
                 break
             except ValueError as e:
                 try_count += 1
+                if try_count >= 3:
+                    raise e
                 continue
 
         self.result = rsp
