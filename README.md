@@ -30,8 +30,10 @@ AutoAgents is an experimental open-source application for An Automatic Agents Ge
 - **Actions**: The specific actions of the expert roles in the execution plan, such as calling tools or outputting results.
 
 ## Demo
-Online demo: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+Online demo: 
+- [Demo / HuggingFace Spaces](https://huggingface.co/spaces/LinkSoul/AutoAgents)
 
+Video demo:
 - **Rumor Verification**
 <video src='https://github.com/shiyemin/AutoAgents/assets/1501158/41898e0d-4137-450c-ad9b-bfb9b8c1d27b.mp4'></video>
 - **Gluttonous Snake**
@@ -65,7 +67,7 @@ cp config/config.yaml config/key.yaml
 ### Usage
 - Commandline mode:
 ```python
-python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERPAPI_KEY --idea "Plan a tour for architectural photography in Barcelona"
+python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERPAPI_KEY --idea "Is LK-99 really a room temperature superconducting material?"
 ```
 - Websocket service mode:
 ```python
