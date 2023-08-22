@@ -273,7 +273,10 @@ function createAgentChatDiv(msg) {
         agentProfileImages[agentNameDiv.textContent] = agentProfileImage;
     }
 
-    const messageText = cleanResponseContent(msg.content);
+    let messageText = cleanResponseContent(msg.content);
+    if(msg.role === 'Question/Task') {
+        messageText = `Task "${messageText}" is submitted.<br/>Waiting for agents to cooperate to complete the task.`;
+    }
     // console.log(messageText);
 
     if (msg.role === 'Question/Task' || msg.role === 'Manager' || msg.role === 'Agents Observer' || msg.role === 'Plan Observer') {
@@ -491,6 +494,10 @@ sendBtn();
 
 // handle sending messages in the chat
 async function sendMessage(exampleMessage) {
+    if(taskId != null) {
+        alert("Previous task is not completed. Please wait for the result or click STOP to end.");
+        return;
+    }
     await clearChat();
     const apiKey = document.getElementById('openai-api-key').value;
     const serpApiKey = document.getElementById('serp-api-key').value;
@@ -501,7 +508,10 @@ async function sendMessage(exampleMessage) {
     const inputMessage = sentMessage || exampleMessage;
 
     if ((!apiKey || apiKey.trim() === '' || apiKey === undefined) && (!serpApiKey || serpApiKey.trim() === '' || serpApiKey === undefined)) {
+        var colLeft = document.querySelector('.col-left');
+        colLeft.classList.toggle('show');
         alert('Please enter both API keys');
+        return;
     } else if (inputMessage === '') {
         alert('Please enter a message');
     } else {
