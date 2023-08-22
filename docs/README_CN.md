@@ -22,31 +22,28 @@ AutoAgents是一个基于LLM的自动代理生成实验的实验性开源应用�
 </p>
 
 ## 🚀 特点
--**Planner**：根据问题确定要添加的专家角色和具体的执行计划。
--**工具**：可使用的工具集，目前仅支持搜索工具。
--**观察员**：负责反思执行过程中的计划和结果是否合理，目前包括对智能体、计划和行动的反思检查。
--**信史**：负责代理人之间的信息交流，协调多个代理人的执行顺序。
--**智能体**：生成的专家角色智能体，包括名称、专业知识、使用的工具和LLM模型。
--**计划**：执行计划由生成的专家角色组成，执行计划的每个步骤至少有一个专家角色代理。
--**动作**：执行计划中专家角色的具体动作，如调用工具或输出结果。
+- **Planner**：根据问题确定要添加的专家角色和具体的执行计划。
+- **工具**：可使用的工具集，目前仅支持搜索工具。
+- **观察员**：负责反思执行过程中的计划和结果是否合理，目前包括对智能体、计划和行动的反思检查。
+- **信史**：负责代理人之间的信息交流，协调多个代理人的执行顺序。
+- **智能体**：生成的专家角色智能体，包括名称、专业知识、使用的工具和LLM模型。
+- **计划**：执行计划由生成的专家角色组成，执行计划的每个步骤至少有一个专家角色代理。
+- **动作**：执行计划中专家角色的具体动作，如调用工具或输出结果。
 
 ## 演示
-TODO
+在线演示: [DEMO](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+
+- **谣言验证**
+<video src='https://github.com/shiyemin/AutoAgents/assets/1501158/41898e0d-4137-450c-ad9b-bfb9b8c1d27b.mp4'></video>
+- **贪吃蛇游戏**
+<video src='https://github.com/shiyemin/AutoAgents/assets/1501158/a327dbcc-4b7f-45f8-81ce-6eafd8071df1.mp4'></video>
 
 ## 安装与使用
 
 ### 传统安装
 
 ```bash
-# Step 1: Ensure that NPM is installed on your system. Then install mermaid-js.
-npm --version
-sudo npm install -g @mermaid-js/mermaid-cli
-
-# Step 2: Ensure that Python 3.9+ is installed on your system. You can check this by using:
-python --version
-
-# Step 3: Clone the repository to your local machine, and install it.
-git clone https://github.com/iCGY96/autoagents
+git clone https://github.com/LinkSoul-AI/AutoAgents
 cd autoagents
 python setup.py install
 ```
@@ -67,15 +64,34 @@ cp config/config.yaml config/key.yaml
 | OPENAI_API_BASE # 可选                 | OPENAI_API_BASE: "https://<YOUR_SITE>/v1" | export OPENAI_API_BASE="https://<YOUR_SITE>/v1" |
 
 ### 使用
+- 命令行模式:
 ```python
-python startup.py "Write a cli snake game"
+python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERPAPI_KEY --idea "Plan a tour for architectural photography in Barcelona"
 ```
+- Websocket服务模式:
+```python
+python main.py --mode service --host "127.0.0.1" --port 9000
+```
+### Docker
+- 生成docker镜像:
+```bash
+IMAGE="linksoul.ai/autoagents"
+VERSION=1.0
+
+docker build -f docker/Dockerfile -t "${IMAGE}:${VERSION}" .
+```
+- 启动docker容器:
+```bash
+docker run -it --rm -p 7860:7860 "${IMAGE}:${VERSION}"
+```
+- 用浏览器打开：http://127.0.0.1:7860
+
 
 ## 联系信息
 
 如果您对这个项目有任何问题或反馈，欢迎联系我们。我们非常欢迎您的建议！
 
 - **邮箱:** gy.chen@foxmail.com, ymshi@linksoul.ai
-- **GitHub 问题:**  对于更技术性的问题，您也可以在我们的 [GitHub repository](https://github.com/iCGY96/autoagents/issues)中创建一个新的问题。
+- **GitHub 问题:**  对于更技术性的问题，您也可以在我们的 [GitHub repository](https://github.com/LinkSoul-AI/AutoAgents/issues)中创建一个新的问题。
 
 我们会在2-3个工作日内回复所有问题。
