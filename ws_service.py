@@ -77,6 +77,11 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
                 logger.info("Interrupt task:" + process.name)
                 process.terminate()
                 process = None
+            try:
+                while True:
+                    alg_msg_queue.get_nowait()
+            except queues.Empty:
+                pass
             alg_msg_queue.put_nowait(format_message(action=MessageType.Interrupt.value, data={'task_id': task_id}))
             alg_msg_queue.put_nowait(format_message(action=MessageType.RunTask.value, data={'task_id': task_id}, msg="finished"))
                 
