@@ -8,7 +8,7 @@ import functools
 import traceback
 import sys
 import logging
-from multiprocessing import current_process, Process, Queue
+from multiprocessing import current_process, Process, Queue, queues
 
 from common import MessageType, format_message, timestamp
 import startup
@@ -65,6 +65,15 @@ def handle_message_wrapper(task_id=None, message=None, alg_msg_queue=None, proxy
     logger.info("New task:"+current_process().name)
     asyncio.run(handle_message(task_id, message, alg_msg_queue, proxy, llm_api_key, serpapi_key))
 
+def clear_queue(alg_msg_queue:Queue=None):
+    if not Queue:
+        return
+    try:
+        while True:
+            alg_msg_queue.get_nowait()
+    except queues.Empty:
+        pass
+
 # read websocket messages
 async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_api_key=None, serpapi_key=None):
     process = None
@@ -77,6 +86,7 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
                 logger.info("Interrupt task:" + process.name)
                 process.terminate()
                 process = None
+            clear_queue(alg_msg_queue=alg_msg_queue)
             alg_msg_queue.put_nowait(format_message(action=MessageType.Interrupt.value, data={'task_id': task_id}))
             alg_msg_queue.put_nowait(format_message(action=MessageType.RunTask.value, data={'task_id': task_id}, msg="finished"))
                 
@@ -86,6 +96,7 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
                 logger.info("Interrupt task:" + process.name)
                 process.terminate()
                 process = None
+                clear_queue(alg_msg_queue=alg_msg_queue)
 
             task_id = str(uuid.uuid4())
             process = Process(target=handle_message_wrapper, args=(task_id, message, alg_msg_queue, proxy, llm_api_key, serpapi_key))
