@@ -135,11 +135,10 @@ async def echo(websocket, proxy=None, llm_api_key=None, serpapi_key=None):
     # message handling
     try:
         alg_msg_queue = Queue()
-        results = await asyncio.gather(
+        await asyncio.gather(
             read_msg_worker(websocket=websocket, alg_msg_queue=alg_msg_queue, proxy=proxy, llm_api_key=llm_api_key, serpapi_key=serpapi_key), 
             send_msg_worker(websocket=websocket, alg_msg_queue=alg_msg_queue)
         )
-        print(results)
     except websockets.exceptions.ConnectionClosed:
         logger.warning("Websocket closed: remote endpoint going away")
     finally:
