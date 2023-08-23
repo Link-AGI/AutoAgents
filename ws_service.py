@@ -18,7 +18,7 @@ KEY_TO_USE_DEFAULT = os.getenv("KEY_TO_USE_DEFAULT")
 DEFAULT_LLM_API_KEY = os.getenv("DEFAULT_LLM_API_KEY") if KEY_TO_USE_DEFAULT is not None else None
 DEFAULT_SERP_API_KEY = os.getenv("DEFAULT_SERP_API_KEY") if KEY_TO_USE_DEFAULT is not None else None
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)s     | %(module)s:%(funcName)s:%(lineno)d - %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s | %(levelname)-8s | %(module)s:%(funcName)s:%(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
 
 async def handle_message(task_id=None, message=None, alg_msg_queue=None, proxy=None, llm_api_key=None, serpapi_key=None): 
@@ -28,7 +28,7 @@ async def handle_message(task_id=None, message=None, alg_msg_queue=None, proxy=N
             DEFAULT_LLM_API_KEY is not None and \
             llm_api_key == KEY_TO_USE_DEFAULT:
         # replace with default key
-        logger.info("Using default llm api key")
+        logger.warning("Using default llm api key")
         llm_api_key = DEFAULT_LLM_API_KEY
 
     if "serpapi_key" in message["data"] and len(message["data"]["serpapi_key"].strip()) >= 32:
@@ -37,7 +37,7 @@ async def handle_message(task_id=None, message=None, alg_msg_queue=None, proxy=N
             DEFAULT_SERP_API_KEY is not None and \
             serpapi_key == KEY_TO_USE_DEFAULT:
         # replace with default key
-        logger.info("Using default serp api key")
+        logger.warning("Using default serp api key")
         serpapi_key = DEFAULT_SERP_API_KEY
 
     idea = message["data"]["idea"].strip() 
@@ -59,10 +59,10 @@ async def handle_message(task_id=None, message=None, alg_msg_queue=None, proxy=N
 
         exc_type, exc_value, exc_traceback = sys.exc_info()
         error_message = traceback.format_exception(exc_type, exc_value, exc_traceback)
-        logger.info("".join(error_message))
+        logger.error("".join(error_message))
 
 def handle_message_wrapper(task_id=None, message=None, alg_msg_queue=None, proxy=None, llm_api_key=None, serpapi_key=None):
-    logger.info("New task:"+current_process().name)
+    logger.warning("New task:"+current_process().name)
     asyncio.run(handle_message(task_id, message, alg_msg_queue, proxy, llm_api_key, serpapi_key))
 
 def clear_queue(alg_msg_queue:Queue=None):
@@ -83,7 +83,7 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
             # force interrupt a specific task
             task_id = message["data"]["task_id"]
             if process and process.is_alive() and process.name == task_id:
-                logger.info("Interrupt task:" + process.name)
+                logger.warning("Interrupt task:" + process.name)
                 process.terminate()
                 process = None
             clear_queue(alg_msg_queue=alg_msg_queue)
@@ -93,7 +93,7 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
         elif message["action"] == MessageType.RunTask.value:
             # auto interrupt previous task
             if process and process.is_alive():
-                logger.info("Interrupt task:" + process.name)
+                logger.warning("Interrupt task:" + process.name)
                 process.terminate()
                 process = None
                 clear_queue(alg_msg_queue=alg_msg_queue)
@@ -106,9 +106,12 @@ async def read_msg_worker(websocket=None, alg_msg_queue=None, proxy=None, llm_ap
         
     # auto terminate process
     if process and process.is_alive():
-        logger.info("Interrupt task:" + process.name)
+        logger.warning("Interrupt task:" + process.name)
         process.terminate()
         process = None
+        clear_queue(alg_msg_queue=alg_msg_queue)
+    
+    raise websockets.exceptions.ConnectionClosed(0, "websocket closed")
 
 # send
 async def send_msg_worker(websocket=None, alg_msg_queue=None):
@@ -123,27 +126,26 @@ async def send_msg_worker(websocket=None, alg_msg_queue=None):
 async def echo(websocket, proxy=None, llm_api_key=None, serpapi_key=None):
     # audo register
     uid = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S.%f')+'_'+str(uuid.uuid4())
-    logger.info(f"{timestamp()} New user registered: {uid}")
+    logger.warning(f"New user registered, uid: {uid}")
     if uid not in user_dict:
         user_dict[uid] = websocket
-        # await websocket.send(format_message("register", {"uid": uid}))
     else:
-        logger.info(f"{timestamp()} Duplicate user: {uid}")
-        # something to do, remove previous uid? must check existing websocket alive
+        logger.warning(f"Duplicate user, uid: {uid}")
         
     # message handling
     try:
         alg_msg_queue = Queue()
-        await asyncio.gather(
+        results = await asyncio.gather(
             read_msg_worker(websocket=websocket, alg_msg_queue=alg_msg_queue, proxy=proxy, llm_api_key=llm_api_key, serpapi_key=serpapi_key), 
             send_msg_worker(websocket=websocket, alg_msg_queue=alg_msg_queue)
         )
-    except websockets.exceptions.ConnectionClosed as e:
-        logger.info(f"Websocket Exception: {e}")
+        print(results)
+    except websockets.exceptions.ConnectionClosed:
+        logger.warning("Websocket closed: remote endpoint going away")
     finally:
         asyncio.current_task().cancel()
         # auto unregister
-        logger.info(f"Websocket closed, auto unregister, uid: {uid}")
+        logger.warning(f"Auto unregister, uid: {uid}")
        
         if uid in user_dict:
             user_dict.pop(uid)
@@ -152,5 +154,5 @@ async def echo(websocket, proxy=None, llm_api_key=None, serpapi_key=None):
 async def run_service(host: str = "localhost", port: int=9000, proxy: str=None, llm_api_key:str=None, serpapi_key:str=None):
     message_handler = functools.partial(echo, proxy=proxy,llm_api_key=llm_api_key, serpapi_key=serpapi_key)
     async with websockets.serve(message_handler, host, port):
-        logger.info(f"Websocket server started: {host}:{port} {f'[proxy={proxy}]' if proxy else ''}")
+        logger.warning(f"Websocket server started: {host}:{port} {f'[proxy={proxy}]' if proxy else ''}")
         await asyncio.Future()

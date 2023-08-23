@@ -11,7 +11,7 @@ from autoagents.explorer import Explorer
 import startup
 import ws_service
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)s     | %(module)s:%(funcName)s:%(lineno)d - %(message)s')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s | %(levelname)-8s | %(module)s:%(funcName)s:%(lineno)d - %(message)s')
 logger = logging.getLogger(__name__)
 
 def signal_handler(signal, frame):
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     elif args.mode == "service":
         asyncio.run(service(host=args.host, port=args.port, proxy=proxy, llm_api_key=args.llm_api_key, serpapi_key=args.serpapi_key))
     else:
-        logger.info(f"Invalid mode: {args.mode}")
+        logger.error(f"Invalid mode: {args.mode}")

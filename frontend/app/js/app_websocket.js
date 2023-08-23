@@ -632,13 +632,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const interruptButton = document.getElementById('interruptButton');
 interruptButton.addEventListener('click', async () => {
-    if (taskId != null) {
+    if (taskId && ws) {
         ws.send(JSON.stringify({
             "action": "interrupt",
             "data": {
                 "task_id": taskId
             }
         }));
+    } else {
+        interruptButton.style.color = 'red';
+        if(interruptButton.textContent == 'Stop'){
+            interruptButton.textContent = 'Stopped';
+        }
+        
+        const callingMessages = document.querySelectorAll("calling-message");
+        callingMessages.forEach((callingMessage) => {
+            callingMessage.style.display = "none !important";
+        })
+
+        clearButton.style.display = '';
+        document.getElementById('calling-next-agent').style.display = 'none';
     }
 });
 const clearButton = document.getElementById('clearButton');
@@ -695,7 +708,7 @@ async function connect() {
         else if (response['action'] == "interrupt") {
             if (response['msg'] == 'ok') {
                 console.log("task: " + taskId + " interrupted.");
-
+                
                 interruptButton.style.color = 'red';
                 if(interruptButton.textContent == 'Stop'){
                     interruptButton.textContent = 'Stopped';
@@ -705,7 +718,7 @@ async function connect() {
                 callingMessages.forEach((callingMessage) => {
                     callingMessage.style.display = "none !important";
                 })
-
+    
                 clearButton.style.display = '';
                 document.getElementById('calling-next-agent').style.display = 'none';
             }
