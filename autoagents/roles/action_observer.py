@@ -12,7 +12,7 @@ Please note that only the text between the first and second "===" is information
 {history}
 ===
 
-You can now choose one of the following stages to decide the stage you need to go in the next step:
+By default, the plan is executed in the following order and no steps can be skipped. You can now choose one of the following stages to decide the stage you need to go in the next step:
 {states}
 
 Just answer a number between 0-{n_states}, choose the most suitable stage according to the understanding of the conversation.
@@ -29,8 +29,8 @@ CONTENT_TEMPLATE ="""
 {step}
 """
 
-class Courier(Role):
-    def __init__(self, steps, init_actions, watch_actions, name="Alex", profile="Courier", goal="Effectively delivering information according to plan.",
+class ActionObserver(Role):
+    def __init__(self, steps, init_actions, watch_actions, name="Alex", profile="ActionObserver", goal="Effectively delivering information according to plan.",
                  constraints="", **kwargs):
         self.steps = steps
         self.next_step = ''
@@ -49,21 +49,30 @@ class Courier(Role):
         # for i, step in enumerate(self.steps):
         #     plan += str(i)+'. ' + step + '\n'
         # prompt = self._get_prefix()
-        # prompt += STATE_TEMPLATE.format(history=self._rc.history, states=plan,
+        # prompt = STATE_TEMPLATE.format(history=self._rc.important_memory, states=self.steps,
         #                                 n_states=len(self.steps) - 1)
-        # next_step = await self._llm.aask(prompt)
 
         # logger.debug(f"{prompt=}")
         # if not next_step.isdigit() or int(next_step) not in range(len(self.steps)):
         #     logger.warning(f'Invalid answer of state, {next_step=}')
         #     next_step = "0"
         
-        # print(next_step)
-        # print(self.steps[int(next_step)])
-        # self.next_step = self.steps[int(next_step)]
         if len(self.steps) > 0:
-            self.next_step = self.steps[0]
-            self.steps.pop(0)
+            states_prompt = ''
+            for i, step in enumerate(self.steps):
+                states_prompt += str(i) + ':' + step + '\n'
+
+            prompt = STATE_TEMPLATE.format(history=self._rc.important_memory, states=states_prompt,
+                                            n_states=len(self.steps) - 1)
+            next_state = await self._llm.aask(prompt)
+            print('**********Steps*********')
+            # print(next_state)
+            print(states_prompt)
+            print('************************')
+            next_state = int(next_state)
+            self.next_step = self.steps[next_state]
+            # print('***', self.next_step)
+            self.steps.pop(next_state)
 
             next_state = 0
             for i, state in enumerate(self._states):
@@ -86,9 +95,6 @@ class Courier(Role):
         logger.info(f"{self._setting}: ready to {self._rc.todo}")
         content = CONTENT_TEMPLATE.format(previous=self._rc.important_memory, step=self.next_step)
         msg = Message(content=content, role=self.profile, cause_by=type(self._rc.todo))
-        # print(self.next_role)
-        # print(type(self._rc.todo))
-        # print(self.next_step)
         self._rc.memory.add(msg)
 
         return msg

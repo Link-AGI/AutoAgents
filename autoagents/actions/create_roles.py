@@ -52,6 +52,7 @@ Your final output should ALWAYS in the following format:
 2. Only existing tools can be used. You CAN NOT create any new tool for any expert role.
 3. Sometimes, you should extract information or values before using it. Otherwise, next step will lack the necessary input.
 4. Use '##' to split sections, not '#', and '## <SECTION_NAME>' SHOULD WRITE BEFORE the code and triple quote.
+5. You can only use the existing tools {tools} for any expert role. You are not allowed to use any other tools. Make sure you create the role of language expert.
 -----
 '''
 

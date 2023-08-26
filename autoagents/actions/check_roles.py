@@ -38,8 +38,9 @@ Your final output should ALWAYS in the following format:
 
 # IMPROTANT Attention
 1. DO NOT forget to create the language expert role.
-2. Only existing tools {tools} can be used for "tools" in JSON BLOB.
+2. Only existing tools {tools} can be used for "tools" in JSON BLOB. If there are any tools not belongs to existings tools {tools}, you should delete them.
 3. If there are no errors for the roles, you should output the original roles list in the section 'Revised Roles List'.
+4. You should output the list of roles that includes all the revised roles correctly in the section ‘Revised Roles List’.
 -----
 '''
 

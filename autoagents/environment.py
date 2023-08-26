@@ -14,7 +14,7 @@ from autoagents.memory import Memory
 from autoagents.roles import Role
 from autoagents.schema import Message
 from autoagents.actions import Requirement
-from autoagents.roles import CustomRole, Courier
+from autoagents.roles import CustomRole, ActionObserver
 
 class Environment(BaseModel):
     """环境，承载一批角色，角色可以向环境发布消息，可以被其他角色观察到"""
@@ -96,7 +96,7 @@ class Environment(BaseModel):
             init_actions.append(self.get_role(role['name']).init_actions)
         
         init_actions.append(Requirement)
-        self.add_role(Courier(steps=plan, watch_actions=init_actions, init_actions=watch_actions, proxy=self.proxy, llm_api_key=self.llm_api_key))
+        self.add_role(ActionObserver(steps=plan, watch_actions=init_actions, init_actions=watch_actions, proxy=self.proxy, llm_api_key=self.llm_api_key))
 
     async def publish_message(self, message: Message):
         """向当前环境发布信息"""
@@ -114,7 +114,7 @@ class Environment(BaseModel):
             file_type = re.findall('```(.*?)\n', str(message.content))[0]
             file_content = re.findall(f'```{file_type}([\s\S]*?)```', str(message.content))[0]
         
-        if message.role and 'Courier' != message.role:
+        if message.role and 'ActionObserver' != message.role:
             # print('\n************MEG**************')
             # print(message.role)
             # print(message)
@@ -150,18 +150,10 @@ class Environment(BaseModel):
             if self.alg_msg_queue:
                 self.alg_msg_queue.put_nowait(format_message(action=MessageType.RunTask.value, data={'task_id': self.task_id, 'task_message':msg}))
 
-        # self.msg_json.append(msg)
-        # file = open(self.json_log, "w")
-        # json.dump(self.msg_json, file)
-        # file.close()
 
 
     async def run(self, k=1):
         """处理一次所有Role的运行"""
-        # while not self.message_queue.empty():
-        # message = self.message_queue.get()
-        # rsp = await self.manager.handle(message, self)
-        # self.message_queue.put(rsp)
         old_roles = []
         for _ in range(k):
             futures = []
@@ -171,20 +163,19 @@ class Environment(BaseModel):
                 future = role.run()
                 futures.append(future)
             
-            # for role in self.roles.values():
-            await asyncio.gather(*futures)          
+            await asyncio.gather(*futures)
 
-            if len(old_roles) < len(self.roles):
-                for _ in range(k):
-                    futures = []
-                    for key in self.roles.keys():
-                        if key not in old_roles:
-                            old_roles.append(key)
-                            role = self.roles[key]
-                            future = role.run()
-                            futures.append(future)
+        if len(old_roles) < len(self.roles):
+            for _ in range(int(2*len(self.steps))):
+                futures = []
+                for key in self.roles.keys():
+                    # if key not in old_roles:
+                    #     old_roles.append(key)
+                    role = self.roles[key]
+                    future = role.run()
+                    futures.append(future)
 
-                    await asyncio.gather(*futures)
+                await asyncio.gather(*futures)
 
     def get_roles(self) -> dict[str, Role]:
         """获得环境内的所有Role"""
