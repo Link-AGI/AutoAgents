@@ -102,7 +102,7 @@ class SearchAndSummarize(Action):
         self.engine = engine or self.config.search_engine
         self.search_engine = SearchEngine(self.engine, run_func=search_func, serpapi_api_key=serpapi_api_key)
         self.result = ""
-        super().__init__(name, context, llm)
+        super().__init__(name, context, llm, serpapi_api_key)
 
     async def run(self, context: list[Message], system_text=SEARCH_AND_SUMMARIZE_SYSTEM) -> str:
         no_serpapi = not self.config.serpapi_api_key or 'YOUR_API_KEY' == self.config.serpapi_api_key

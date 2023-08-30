@@ -20,6 +20,9 @@ AutoAgents is an experimental open-source application for An Automatic Agents Ge
     <img src=./docs/resources/framework2.jpg width="800">
 </p>
 
+## <a name="updates"/> :boom: Updates
+- **2023.08.30**: Adding a custom agent collection, AgentBank, allows you to add custom agents. Detailed tutorial reference A [tutorial](docs/tutorial.md)
+
 ## 🚀 Features
 - **Planner**: Determines the expert roles to be added and the specific execution plan according to the problem.
 - **Tools**: The set of tools that can be used, currently only compatible with the search tools.

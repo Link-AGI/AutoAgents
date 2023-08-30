@@ -14,7 +14,7 @@ from autoagents.memory import Memory
 from autoagents.roles import Role
 from autoagents.schema import Message
 from autoagents.actions import Requirement
-from autoagents.roles import CustomRole, ActionObserver
+from autoagents.roles import CustomRole, ActionObserver, ROLES_LIST, ROLES_MAPPING
 
 class Environment(BaseModel):
     """环境，承载一批角色，角色可以向环境发布消息，可以被其他角色观察到"""
@@ -75,25 +75,40 @@ class Environment(BaseModel):
     def create_roles(self, plan: list, args: dict):
         """创建Role""" 
 
+        existing_roles = dict()
+        for item in ROLES_LIST:
+            existing_roles[item['name']] = item
+                
         init_actions, watch_actions = [], []
         for role in args:
             class_name = role['name'].replace(' ', '_') + '_Requirement'
             requirement_type = type(class_name, (Requirement,), {})
-            print('Add a new role:', role['name'])
-            self.add_role(CustomRole(
-                name=role['name'],
-                profile=role['name'],
-                goal=role['descriptions'],
-                role_prompt=role['prompt'],
-                steps=role['steps'],
-                tool=role['tools'],
-                watch_actions=[requirement_type],
-                proxy=self.proxy,
-                llm_api_key=self.llm_api_key,
-                serpapi_key=self.serpapi_key,
-            ))
+            if role['name'] in existing_roles.keys():
+                print('Add a predefiend role:', role['name'])
+                role_object = ROLES_MAPPING[role['name']]
+                if 'Engineer' in role['name']:
+                    _role = role_object(n_borg=2, use_code_review=True, proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
+                else:
+                    _role = role_object(watch_actions=[requirement_type], proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
+            else:
+                print('Add a new role:', role['name'])
+                _role = CustomRole(
+                    name=role['name'],
+                    profile=role['name'],
+                    goal=role['description'],
+                    role_prompt=role['prompt'],
+                    steps=role['steps'],
+                    tool=role['tools'],
+                    watch_actions=[requirement_type],
+                    proxy=self.proxy,
+                    llm_api_key=self.llm_api_key,
+                    serpapi_api_key=self.serpapi_key,
+                )
+                
+            self.add_role(_role)
             watch_actions.append(requirement_type)
-            init_actions.append(self.get_role(role['name']).init_actions)
+            init_actions.append(_role.init_actions)
+            
         
         init_actions.append(Requirement)
         self.add_role(ActionObserver(steps=plan, watch_actions=init_actions, init_actions=watch_actions, proxy=self.proxy, llm_api_key=self.llm_api_key))
@@ -166,16 +181,25 @@ class Environment(BaseModel):
             await asyncio.gather(*futures)
 
         if len(old_roles) < len(self.roles):
-            for _ in range(int(2*len(self.steps))):
+            # for _ in range(int(len(self.steps))):
+            while len(self.get_role(name='ActionObserver').steps) > 0:
                 futures = []
                 for key in self.roles.keys():
-                    # if key not in old_roles:
-                    #     old_roles.append(key)
+                    if key not in old_roles:
+                        role = self.roles[key]
+                        future = role.run()
+                        futures.append(future)
+
+                await asyncio.gather(*futures)
+
+            futures = []
+            for key in self.roles.keys():
+                if key not in old_roles:
                     role = self.roles[key]
                     future = role.run()
                     futures.append(future)
 
-                await asyncio.gather(*futures)
+            await asyncio.gather(*futures)
 
     def get_roles(self) -> dict[str, Role]:
         """获得环境内的所有Role"""

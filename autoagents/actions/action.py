@@ -9,7 +9,7 @@ from autoagents.utils.common import OutputParser
 from autoagents.logs import logger
 
 class Action(ABC):
-    def __init__(self, name: str = '', context=None, llm: LLM = None):
+    def __init__(self, name: str = '', context=None, llm: LLM = None, serpapi_api_key=None):
         self.name: str = name
         # if llm is None:
         #     llm = LLM(proxy, api_key)
@@ -19,13 +19,15 @@ class Action(ABC):
         self.profile = ""
         self.desc = ""
         self.content = ""
+        self.serpapi_api_key = serpapi_api_key
         self.instruct_content = None
 
-    def set_prefix(self, prefix, profile, proxy, api_key):
+    def set_prefix(self, prefix, profile, proxy, api_key, serpapi_api_key):
         """Set prefix for later usage"""
         self.prefix = prefix
         self.profile = profile
         self.llm = LLM(proxy, api_key)
+        self.serpapi_api_key = serpapi_api_key
 
     def __str__(self):
         return self.__class__.__name__

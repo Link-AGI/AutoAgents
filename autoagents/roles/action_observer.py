@@ -15,7 +15,7 @@ Please note that only the text between the first and second "===" is information
 By default, the plan is executed in the following order and no steps can be skipped. You can now choose one of the following stages to decide the stage you need to go in the next step:
 {states}
 
-Just answer a number between 0-{n_states}, choose the most suitable stage according to the understanding of the conversation.
+Just answer a number between 1-{n_states}, choose the most suitable stage according to the understanding of the conversation.
 Please note that the answer only needs a number, no need to add any other text.
 If there is no conversation record, choose 0.
 Do not answer anything else, and do not add any other information in your answer.
@@ -60,26 +60,26 @@ class ActionObserver(Role):
         if len(self.steps) > 0:
             states_prompt = ''
             for i, step in enumerate(self.steps):
-                states_prompt += str(i) + ':' + step + '\n'
+                states_prompt += str(i+1) + ':' + step + '\n'
 
             prompt = STATE_TEMPLATE.format(history=self._rc.important_memory, states=states_prompt,
                                             n_states=len(self.steps) - 1)
             next_state = await self._llm.aask(prompt)
             print('**********Steps*********')
-            # print(next_state)
             print(states_prompt)
             print('************************')
-            next_state = int(next_state)
+            next_state = 0 # int(next_state)-1
             self.next_step = self.steps[next_state]
             # print('***', self.next_step)
             self.steps.pop(next_state)
 
-            next_state = 0
-            for i, state in enumerate(self._states):
-                class_name = re.findall('abc.(.*?)_Requirement', str(state))[0].replace('_', ' ')
-                if class_name in self.next_step.split(':')[0]:
-                    next_state = i
-                    self.next_role = class_name
+            next_state, min_idx = 0, 100
+            for i, state in enumerate(self._actions):
+                class_name = re.findall('(.*?)_Requirement', str(state))[0].replace('_', ' ')
+                next_state = i
+                self.next_role = class_name
+                if class_name == self.next_step.split(':')[0]:
+                    break
 
             self._set_state(next_state)
         else:
