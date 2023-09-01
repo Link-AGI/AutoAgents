@@ -130,16 +130,15 @@ class Environment(BaseModel):
             file_content = re.findall(f'```{file_type}([\s\S]*?)```', str(message.content))[0]
         
         if message.role and 'ActionObserver' != message.role:
-            # print('\n************MEG**************')
-            # print(message.role)
-            # print(message)
-            # print(filename)
-            # print('*******************************')
+            if hasattr(message.instruct_content, 'Response'):
+                content = message.instruct_content.Response
+            else:
+                content = message.content
 
             msg = {   
                 'timestamp': timestamp(),
                 'role': message.role,
-                'content': message.content,
+                'content': content,
                 'file': {
                     'file_type': filename,
                     'file_data': file_content,
