@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# https://github.com/geekan/MetaGPT/blob/main/metagpt/roles/role.py
+# From: https://github.com/geekan/MetaGPT/blob/main/metagpt/roles/role.py
 from __future__ import annotations
 
 from typing import Iterable, Type
