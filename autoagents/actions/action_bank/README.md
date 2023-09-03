@@ -1,0 +1,2 @@
+## Acknowledgements
+The ```design_api.py```,  ```project_management.py```, ```requirement.py```, ```search_and_summarize.py```, ```write_code_review.py```, ```write_code.py``` and ```write_prd.py``` from MetaGPT [MetaGPT](https://github.com/geekan/MetaGPT)
