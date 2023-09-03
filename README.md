@@ -101,7 +101,7 @@ We will respond to all questions within 2-3 business days.
 
 ## License
 
-[Apache-2.0 license](https://raw.githubusercontent.com/LinkSoul-AI/AutoAgents/main/LICENSE)
+[MIT license](https://raw.githubusercontent.com/LinkSoul-AI/AutoAgents/main/LICENSE)
 
 ## Citation
 
