@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from typing import List, Tuple
-from autoagents.actions.action import Action
+from .action import Action
 import re
 
 PROMPT_TEMPLATE = '''

@@ -3,7 +3,7 @@
 
 from autoagents.actions import CheckRoles, CheckPlans, CreateRoles
 from autoagents.roles import Role
-from autoagents.logs import logger
+from autoagents.system.logs import logger
 
 
 class ObserverAgents(Role):

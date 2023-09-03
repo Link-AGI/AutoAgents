@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 from typing import List, Tuple
 
-from autoagents.logs import logger
-from autoagents.actions.action import Action
-from .search_and_summarize import SearchAndSummarize, SEARCH_AND_SUMMARIZE_SYSTEM_EN_US
+from autoagents.system.logs import logger
+from .action import Action
+from .action_bank.search_and_summarize import SearchAndSummarize, SEARCH_AND_SUMMARIZE_SYSTEM_EN_US
 # from .tools import TOOLS_LIST
 
 PROMPT_TEMPLATE = '''

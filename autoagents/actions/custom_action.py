@@ -5,14 +5,15 @@ import os
 import json
 from typing import List, Tuple
 
-from autoagents.logs import logger
 from autoagents.actions.action import Action
-from autoagents.actions.action_output import ActionOutput
-from autoagents.utils.common import OutputParser
-from autoagents.schema import Message
-from autoagents.const import WORKSPACE_ROOT
-from autoagents.actions.search_and_summarize import SearchAndSummarize, SEARCH_AND_SUMMARIZE_SYSTEM_EN_US
-from autoagents.utils.common import CodeParser
+from .action.action_output import ActionOutput
+from .action_bank.search_and_summarize import SearchAndSummarize, SEARCH_AND_SUMMARIZE_SYSTEM_EN_US
+
+from autoagents.system.logs import logger
+from autoagents.system.utils.common import OutputParser
+from autoagents.system.schema import Message
+from autoagents.system.const import WORKSPACE_ROOT
+from autoagents.system.utils.common import CodeParser
 
 PROMPT_TEMPLATE = '''
 -----

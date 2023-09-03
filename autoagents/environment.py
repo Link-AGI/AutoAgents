@@ -4,7 +4,7 @@
 @Time    : 2023/5/11 22:12
 @Author  : alexanderwu
 @File    : environment.py
-@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/environment.py
+@Modified From: https://github.com/geekan/MetaGPT/blob/main/metagpt/environment.py
 """
 import asyncio
 import re
@@ -16,11 +16,12 @@ from typing import Iterable
 
 from pydantic import BaseModel, Field
 
-from autoagents.memory import Memory
-from autoagents.roles import Role
-from autoagents.schema import Message
-from autoagents.actions import Requirement
-from autoagents.roles import CustomRole, ActionObserver, ROLES_LIST, ROLES_MAPPING
+from .roles import Role
+from .actions import Requirement
+from .roles import CustomRole, ActionObserver, ROLES_LIST, ROLES_MAPPING
+
+from .system.memory import Memory
+from .system.schema import Message
 
 class Environment(BaseModel):
     """环境，承载一批角色，角色可以向环境发布消息，可以被其他角色观察到"""

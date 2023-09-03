@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 from pydantic import BaseModel, Field
 
-from autoagents.actions import Requirement
-from autoagents.config import CONFIG
-from autoagents.environment import Environment
-from autoagents.logs import logger
-from autoagents.roles import Role
-from autoagents.schema import Message
-from autoagents.utils.common import NoMoneyException
+from .roles import Role
+from .actions import Requirement
+from .environment import Environment
+
+from .system.config import CONFIG
+from .system.logs import logger
+from .system.schema import Message
+from .system.utils.common import NoMoneyException
 
 
 class Explorer(BaseModel):

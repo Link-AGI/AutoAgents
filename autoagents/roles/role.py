@@ -8,12 +8,12 @@ from typing import Iterable, Type
 from pydantic import BaseModel, Field
 
 # from autoagents.environment import Environment
-from autoagents.config import CONFIG
 from autoagents.actions import Action, ActionOutput
-from autoagents.llm import LLM
-from autoagents.logs import logger
-from autoagents.memory import Memory, LongTermMemory
-from autoagents.schema import Message
+from autoagents.system.config import CONFIG
+from autoagents.system.llm import LLM
+from autoagents.system.logs import logger
+from autoagents.system.memory import Memory, LongTermMemory
+from autoagents.system.schema import Message
 
 PREFIX_TEMPLATE = """You are a {profile}, named {name}, your goal is {goal}, and the constraint is {constraints}. """
 

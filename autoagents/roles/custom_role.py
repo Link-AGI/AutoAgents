@@ -5,15 +5,14 @@ from typing import Iterable, Type
 from pydantic import BaseModel, Field
 
 from autoagents.roles import Role
-from autoagents.actions import CustomAction
+from autoagents.actions import CustomAction, Action, ActionOutput
 
 # from autoagents.environment import Environment
-from autoagents.config import CONFIG
-from autoagents.actions import Action, ActionOutput
-from autoagents.llm import LLM
-from autoagents.logs import logger
-from autoagents.memory import Memory, LongTermMemory
-from autoagents.schema import Message
+from autoagents.system.config import CONFIG
+from autoagents.system.llm import LLM
+from autoagents.system.logs import logger
+from autoagents.system.memory import Memory, LongTermMemory
+from autoagents.system.schema import Message
 
 class CustomRole(Role):
     def __init__(self, role_prompt, steps, tool, watch_actions,
