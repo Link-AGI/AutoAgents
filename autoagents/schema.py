@@ -2,6 +2,7 @@
 @Time    : 2023/5/8 22:12
 @Author  : alexanderwu
 @File    : schema.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/schema.py
 """
 from __future__ import annotations
 

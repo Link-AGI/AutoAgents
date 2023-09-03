@@ -4,6 +4,7 @@
 @Time    : 2023/5/1 11:59
 @Author  : alexanderwu
 @File    : const.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/const.py
 """
 from pathlib import Path
 

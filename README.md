@@ -120,4 +120,4 @@ If you find our work and this repository useful, please consider giving a star :
 <img src=".github/QRcode.jpg" alt="Wechat Group" width="200"/>
 
 ## Acknowledgements
-This code base has borrowed several implementations from this [link](https://github.com/geekan/MetaGPT)
+This code base is built using the environment of [MetaGPT](https://github.com/geekan/MetaGPT)

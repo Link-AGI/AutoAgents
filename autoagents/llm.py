@@ -2,6 +2,7 @@
 @Time    : 2023/5/11 14:45
 @Author  : alexanderwu
 @File    : llm.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/llm.py
 """
 from autoagents.provider.anthropic_api import Claude2 as Claude
 from autoagents.provider.openai_api import OpenAIGPTAPI as LLM

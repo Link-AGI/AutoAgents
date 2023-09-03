@@ -4,6 +4,7 @@
 @Time    : 2023/5/28 14:54
 @Author  : alexanderwu
 @File    : inspect_module.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/inspect_module.py
 """
 import inspect
 

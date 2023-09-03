@@ -4,6 +4,7 @@
 @Time    : 2023/5/11 22:12
 @Author  : alexanderwu
 @File    : environment.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/environment.py
 """
 import asyncio
 import re

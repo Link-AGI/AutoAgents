@@ -2,6 +2,7 @@
 # @Date    : 2023/7/19 16:28
 # @Author  : stellahong (stellahong@fuzhi.ai)
 # @Desc    :
+# From     : https://github.com/geekan/MetaGPT/blob/main/metagpt/tools/sd_engine.py
 import os
 import asyncio
 from os.path import join

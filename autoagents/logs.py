@@ -2,6 +2,7 @@
 @Time    : 2023/6/1 12:41
 @Author  : alexanderwu
 @File    : logs.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/logs.py
 """
 import sys
 
