@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@from : https://github.com/geekan/MetaGPT/blob/main/metagpt/config.py
+@Modified from : https://github.com/geekan/MetaGPT/blob/main/metagpt/config.py
 """
 import os
 import openai

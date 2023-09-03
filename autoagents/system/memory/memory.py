@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# https://github.com/geekan/MetaGPT/blob/main/metagpt/memory/memory.py
+# Modified from https://github.com/geekan/MetaGPT/blob/main/metagpt/memory/memory.py
 
 from collections import defaultdict
 from typing import Iterable, Type
