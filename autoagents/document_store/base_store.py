@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/28 00:01
+@Author  : alexanderwu
+@File    : https://github.com/geekan/MetaGPT/blob/main/metagpt/document_store/base_store.py
+"""
 from abc import ABC, abstractmethod
 from pathlib import Path
 

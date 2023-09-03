@@ -3,6 +3,7 @@
 """
 @Time    : 2023/5/11 14:43
 @Author  : alexanderwu
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/actions/write_prd.py
 """
 from typing import List, Tuple
 

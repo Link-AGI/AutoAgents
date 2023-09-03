@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# From: https://github.com/geekan/MetaGPT/blob/main/metagpt/provider/base_gpt_api.py
+
 from abc import abstractmethod
 from typing import Optional
 

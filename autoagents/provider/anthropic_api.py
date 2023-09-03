@@ -4,6 +4,7 @@
 @Time    : 2023/7/21 11:15
 @Author  : Leo Xiao
 @File    : anthropic_api.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/provider/anthropic_api.py
 """
 
 import anthropic

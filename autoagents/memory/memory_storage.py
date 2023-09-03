@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Desc   : the implement of memory storage
+# https://github.com/geekan/MetaGPT/blob/main/metagpt/memory/memory_storage.py
 
 from typing import List
 from pathlib import Path

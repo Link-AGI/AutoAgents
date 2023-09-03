@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/25 10:20
+@Author  : alexanderwu
+@File    : https://github.com/geekan/MetaGPT/blob/main/metagpt/document_store/faiss_store.py
+"""
 import pickle
 from pathlib import Path
 from typing import Optional

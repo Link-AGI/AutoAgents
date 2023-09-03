@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/6/8 14:03
+@Author  : alexanderwu
+@File    : https://github.com/geekan/MetaGPT/blob/main/metagpt/document_store/document.py
+"""
 from pathlib import Path
 
 import pandas as pd

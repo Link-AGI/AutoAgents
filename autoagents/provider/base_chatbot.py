@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# https://github.com/geekan/MetaGPT/blob/main/metagpt/provider/base_chatbot.py
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 

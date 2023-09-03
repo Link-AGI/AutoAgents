@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/2 16:03
+@Author  : alexanderwu
+@File    : prompt_writer.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/tools/prompt_writer.py
+"""
 from typing import Union
 
 

@@ -1,5 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/5 23:08
+@Author  : alexanderwu
+@File    : openai.py
+@From    : https://github.com/geekan/MetaGPT/blob/main/metagpt/provider/openai_api.py
+"""
 import asyncio
 import time
 from functools import wraps

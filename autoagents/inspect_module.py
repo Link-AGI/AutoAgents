@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+"""
+@Time    : 2023/5/28 14:54
+@Author  : alexanderwu
+@File    : inspect_module.py
+"""
 import inspect
 
 import autoagents  # replace with your module

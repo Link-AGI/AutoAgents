@@ -1,3 +1,8 @@
+"""
+@Time    : 2023/5/8 22:12
+@Author  : alexanderwu
+@File    : schema.py
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field

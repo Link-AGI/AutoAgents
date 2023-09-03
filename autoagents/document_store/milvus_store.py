@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/28 00:00
+@Author  : alexanderwu
+@File    : https://github.com/geekan/MetaGPT/blob/main/metagpt/document_store/milvus_store.py
+"""
 from typing import TypedDict
 
 import numpy as np

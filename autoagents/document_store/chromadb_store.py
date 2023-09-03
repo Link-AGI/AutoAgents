@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+@Time    : 2023/5/29 14:46
+@Author  : alexanderwu
+@File    : https://github.com/geekan/MetaGPT/blob/main/metagpt/document_store/chromadb_store.py
+"""
 import chromadb
 
 

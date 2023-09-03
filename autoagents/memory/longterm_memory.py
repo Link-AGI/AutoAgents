@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Desc   : the implement of Long-term memory
+# https://github.com/geekan/MetaGPT/blob/main/metagpt/memory/longterm_memory.py
 
 from typing import Iterable, Type
 
