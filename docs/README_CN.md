@@ -96,3 +96,6 @@ docker run -it --rm -p 7860:7860 "${IMAGE}:${VERSION}"
 - **GitHub 问题:**  对于更技术性的问题，您也可以在我们的 [GitHub repository](https://github.com/LinkSoul-AI/AutoAgents/issues)中创建一个新的问题。
 
 我们会在2-3个工作日内回复所有问题。
+
+## 致谢
+AutoAgents 遵守 MIT 协议开源，其中项目的虚拟环境部分基于同样使用 MIT 协议的开源项目 [MetaGPT](https://github.com/geekan/MetaGPT) 实现。
