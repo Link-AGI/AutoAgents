@@ -120,4 +120,6 @@ If you find our work and this repository useful, please consider giving a star :
 <img src=".github/QRcode.jpg" alt="Wechat Group" width="200"/>
 
 ## Acknowledgements
-The [system](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/system), [action_banck](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/actions/action_bank) and [role_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/roles/role_bank) of this code base is built using [MetaGPT](https://github.com/geekan/MetaGPT)
+The [system](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/system), [action_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/actions/action_bank) and [role_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/roles/role_bank) of this code base is built using [MetaGPT](https://github.com/geekan/MetaGPT)
+
+Icons in the framework made by Darius Dan, Freepik, kmg design, Flat Icons, Vectorslab from [FlatIcon](https://www.flaticon.com)
