@@ -41,7 +41,7 @@ You have access to the following tools:
 file content
 >>>END
 ```
-4.2 If you think that the completed steps are enough to finish the task, use the action 'Final Output' and summarize all the previous step outputs and provide as much detailed final output to solve the task in the section 'ActionInput'.
+4.2 If you think that the completed steps are enough to finish the task, use the action 'Final Output' and summarize all the previous step outputs and provide as much detailed final output to solve the task in the section 'ActionInput'. Please do your best to preserve the details of each step in the section 'ActionInput'.
 
 # Format example
 Your final output should ALWAYS in the following format:

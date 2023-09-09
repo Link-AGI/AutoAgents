@@ -42,12 +42,12 @@ class ActionObserver(Role):
             self.next_step = rsp.instruct_content.NextStep
             next_state, new_step = 0, True
             for i, step in enumerate(self.steps):
-                next_state = i
                 if self.next_step in step or step in self.next_step:
+                    next_state = i
                     new_step = False
                     break
 
-            if not new_step:
+            if new_step:
                 next_state = 0
                 self.steps.insert(0, self.next_step)
             

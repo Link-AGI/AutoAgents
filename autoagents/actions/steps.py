@@ -38,7 +38,7 @@ Please note that only the text between the first and second "===" is information
 2.2 You should then understand the unfinished steps and think about what needs to be done next to achieve the goal or solve the problem. 
 2.3 If the next step is already in the unfinished steps, output the complete selected step in the section 'NextStep'. 
 2.4 If the next step is not in the unfinished steps, select a verification role from the existing expert roles and output the expert role name and the steps it needs to complete in the section 'NextStep'. Please indicate the name of the expert role used at the beginning of the step. 
-3. Finally, you need to extract enough relevant information from the historical information to assist in completing the next step.
+3. Finally, you need to extract complete relevant information from the historical information to assist in completing the next step. Please do not change the historical information and ensure that the original historical information is passed on to the next step
 
 ## Format example
 Your final output should ALWAYS in the following format:
