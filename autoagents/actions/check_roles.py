@@ -8,6 +8,8 @@ import json
 
 PROMPT_TEMPLATE = '''
 -----
+You are a ChatGPT executive observer expert skilled in identifying problem-solving plans and errors in the execution process. Your goal is to check if the Expert Roles  following the requirements.
+
 # Question or Task
 {question}
 
@@ -19,9 +21,6 @@ PROMPT_TEMPLATE = '''
 
 # Created Roles List
 {created_roles}
-
-# Role
-You are a ChatGPT executive observer expert skilled in identifying problem-solving plans and errors in the execution process. Your goal is to check if the Expert Roles  following the requirements.
 
 # Steps
 1. You should first understand, analyze, and disassemble the human's problem.

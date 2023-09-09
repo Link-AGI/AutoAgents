@@ -30,47 +30,29 @@ class CustomRole(Role):
     async def _act(self) -> Message:
         logger.info(f"{self._setting}: ready to {self._rc.todo}")
 
-        completed_steps, responses, todo = '', '', ''
-
-        addition = f"\n### Completed Steps\n{completed_steps} \n\n### Responses of Previous Steps\n{responses}\n ### TODO Steps\n{todo}\n ###"
-
+        completed_steps = ''
+        addition = f"\n### Completed Steps and Responses\n{completed_steps}\n###"
         context = str(self._rc.important_memory) + addition
-
         response = await self._rc.todo.run(context)
 
-        completed_steps += response.instruct_content.CurrentStep
-        responses += response.instruct_content.Response
-        todo = response.instruct_content.TODO
+        if hasattr(response.instruct_content, 'Action'):
+            completed_steps += '>Substep:\n' + response.instruct_content.Action + '\n>Subresponse:\n' + response.instruct_content.Response + '\n'
 
         count_steps = 0
-        while 'None' not in response.instruct_content.TODO:
-            if count_steps > 5:
-                todo = 'You should synthesize the responses of previous steps and provide the final feedback.'
+        while hasattr(response.instruct_content, 'Action'):
+            if count_steps > 20:
+                completed_steps += '\n You should synthesize the responses of previous steps and provide the final feedback.'
             
-            addition = f"\n### Completed Steps\n{completed_steps} \n\n### Responses of Previous Steps\n{responses}\n ### TODO Steps\n{todo}\n ###"
-
+            addition = f"\n### Completed Steps and Responses\n{completed_steps}\n###"
             context = str(self._rc.important_memory) + addition
-
             response = await self._rc.todo.run(context)
 
-            responses += f"\n\n{response.instruct_content.Response}\n" 
-
-            # print(response.instruct_content)
-
-            # if hasattr(response.instruct_content, 'TODO'):
-            #     completed_steps += f"\n\n{response.instruct_content.CurrentStep}\n"
-            #     todo = f"\n\n{response.instruct_content.TODO}\n"
-            # else:
-            #     todo = 'None'
-
-            completed_steps += f"\n\n{response.instruct_content.CurrentStep}\n"
-            todo = f"\n\n{response.instruct_content.TODO}\n"
+            if hasattr(response.instruct_content, 'Action'):
+                completed_steps += '>Substep:\n' + response.instruct_content.Action + '\n>Subresponse:\n' + response.instruct_content.Response + '\n'
 
             count_steps += 1
 
-        # response.instruct_content.Response = responses
-        response.instruct_content.CurrentStep = ''
-        response.instruct_content.TODO = ''
+            if count_steps > 20: break
 
         if isinstance(response, ActionOutput):
             msg = Message(content=response.content, instruct_content=response.instruct_content,

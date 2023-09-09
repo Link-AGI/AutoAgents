@@ -9,6 +9,8 @@ from .action_bank.search_and_summarize import SearchAndSummarize, SEARCH_AND_SUM
 
 PROMPT_TEMPLATE = '''
 -----
+You are a manager and an expert-level ChatGPT prompt engineer with expertise in multiple fields; the goal is to break down tasks by creating multi LLM agents, give a role list, and analyze role dependencies.
+
 # Question or Task
 {context}
 
@@ -18,12 +20,9 @@ PROMPT_TEMPLATE = '''
 # Existing Expert Roles
 {existing_roles}
 
-# Role
-You are a manager and an expert-level ChatGPT prompt engineer with expertise in multiple fields; the goal is to break down tasks by creating multi LLM agents, give a role list, and analyze role dependencies.
-
 # Steps
 You will come up with solutions for any task or problem by following these steps:
-1. You should first understand, analyze, and disassemble the human's problem.
+1. You should first understand, analyze, and disassemble the human's problem based on the search information.
 2. According to the problem, existing expert roles and the toolset ({tools}), you will choose existing expert roles needed to solve the problem on the basis of serving as an expert level ChatGPT prompt engineer and planner with expertise in multiple fields, so as to better develop a problem solving plan to provide the best answer. You should create roles following these principles:
 2.1. Fully utilize existing expert roles to solve problems.
 2.2. Please follow the requirements of the existing expert roles. Ensure that existing expert roles with cooperative or dependent relationships are selected.
@@ -52,6 +51,7 @@ You will come up with solutions for any task or problem by following these steps
 4.4. Make the plan as detailed as possible to accurately complete the task.
 4.5. Output the execution plan as a numbered list of steps. Please indicate the name of the expert role used at the beginning of the step. 
 4.6. The final step should always be an independent step 'XXX: Given the above steps taken, please respond to the users original question: XXX' by the language expert role. At the end of your plan, say '<END_OF_PLAN>'
+4.7. You need to ensure that the following steps are completed to answer questions or complete tasks.
 
 # Format example
 Your final output should ALWAYS in the following format:
@@ -119,9 +119,12 @@ class CreateRoles(Action):
 
     async def run(self, context):
         # sas = SearchAndSummarize()
+
         sas = SearchAndSummarize(serpapi_api_key=self.serpapi_api_key, llm=self.llm)
+        context[-1].content = 'How to solve/complete ' + context[-1].content.replace('Question/Task', '')
+        question = 'How to solve/complete' + str(context[-1]).replace('Question/Task:', '')
         rsp = await sas.run(context=context, system_text=SEARCH_AND_SUMMARIZE_SYSTEM_EN_US)
-        rsp = ""
+        context[-1].content = context[-1].content.replace('How to solve/complete ', '')
         info = f"## Search Results\n{sas.result}\n\n## Search Summary\n{rsp}"
 
         from autoagents.roles import ROLES_LIST

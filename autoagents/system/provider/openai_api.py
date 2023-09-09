@@ -136,6 +136,7 @@ class OpenAIGPTAPI(BaseGPTAPI, RateLimiter):
         self.api_key = api_key
         self.__init_openai(CONFIG)
         self.llm = openai
+        self.stops = None
         self.model = CONFIG.openai_api_model
         self._cost_manager = CostManager()
         RateLimiter.__init__(self, rpm=self.rpm)
@@ -187,7 +188,7 @@ class OpenAIGPTAPI(BaseGPTAPI, RateLimiter):
                 "messages": messages,
                 "max_tokens": CONFIG.max_tokens_rsp,
                 "n": 1,
-                "stop": None,
+                "stop": self.stops,
                 "temperature": 0.3
             }
         else:
@@ -196,7 +197,7 @@ class OpenAIGPTAPI(BaseGPTAPI, RateLimiter):
                 "messages": messages,
                 "max_tokens": CONFIG.max_tokens_rsp,
                 "n": 1,
-                "stop": None,
+                "stop": self.stops,
                 "temperature": 0.3
             }
         return kwargs

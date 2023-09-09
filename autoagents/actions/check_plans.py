@@ -7,17 +7,16 @@ import re
 
 PROMPT_TEMPLATE = '''
 -----
+You are a ChatGPT executive observer expert skilled in identifying problem-solving plans and errors in the execution process. Your goal is to check if the created Execution Plan following the requirements.
+
 # Question or Task
 {context}
-
-# Execution Plan
-{plan}
 
 # Revised Role List
 {roles}
 
-# Role
-You are a ChatGPT executive observer expert skilled in identifying problem-solving plans and errors in the execution process. Your goal is to check if the created Execution Plan following the requirements.
+# Execution Plan
+{plan}
 
 # Steps
 1. You should first understand, analyze, and disassemble the human's problem.
@@ -40,6 +39,7 @@ Your final output should ALWAYS in the following format:
 1. Make sure the name of the expert role used at the beginning of the step. 
 2. If there are no errors for the execution plan, you should output the original execution plan in the section 'Revised Execution Plan'.
 3. You must not change any of the expert roles. Make the best use of all the expert roles available.
+4. You need to ensure that the following steps are completed to answer questions or complete tasks.
 -----
 '''
 
@@ -75,6 +75,8 @@ class CheckPlans(Action):
     async def run(self, context):
 
         roles = re.findall('## Revised Selected Roles List:([\s\S]*?)##', str(context))[-1]
+        agents = re.findall('{[\s\S]*?}', roles)
+        if len(agents) <= 0: roles = ''
         roles += re.findall('## Revised Created Roles List:([\s\S]*?)##', str(context))[-1]
         plan = re.findall('## Execution Plan:([\s\S]*?)##', str(context))[-1]
         context = re.findall('## Question or Task:([\s\S]*?)##', str(context))[-1]

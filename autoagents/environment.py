@@ -76,7 +76,8 @@ class Environment(BaseModel):
         print('---------------Steps---------------')
         for i, step in enumerate(steps):
             print('Step', i, step)
-
+        
+        steps.insert(0, '')
         return steps
     
     def create_roles(self, plan: list, args: dict):
@@ -187,7 +188,6 @@ class Environment(BaseModel):
             await asyncio.gather(*futures)
 
         if len(old_roles) < len(self.roles):
-            # for _ in range(int(len(self.steps))):
             while len(self.get_role(name='ActionObserver').steps) > 0:
                 futures = []
                 for key in self.roles.keys():
@@ -197,15 +197,6 @@ class Environment(BaseModel):
                         futures.append(future)
 
                 await asyncio.gather(*futures)
-
-            futures = []
-            for key in self.roles.keys():
-                if key not in old_roles:
-                    role = self.roles[key]
-                    future = role.run()
-                    futures.append(future)
-
-            await asyncio.gather(*futures)
 
     def get_roles(self) -> dict[str, Role]:
         """获得环境内的所有Role"""
