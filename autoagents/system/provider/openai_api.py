@@ -11,6 +11,7 @@ from functools import wraps
 from typing import NamedTuple
 
 import openai
+import litellm
 
 from autoagents.system.config import CONFIG
 from autoagents.system.logs import logger
@@ -145,22 +146,22 @@ class OpenAIGPTAPI(BaseGPTAPI, RateLimiter):
         if self.proxy != '':
             openai.proxy = self.proxy
         else:
-            openai.api_key = config.openai_api_key
+            litellm.api_key = config.openai_api_key
         
         if self.api_key != '':
-            openai.api_key = self.api_key
+            litellm.api_key = self.api_key
         else:
-            openai.api_key = config.openai_api_key
+            litellm.api_key = config.openai_api_key
         
         if config.openai_api_base:
-            openai.api_base = config.openai_api_base
+            litellm.api_base = config.openai_api_base
         if config.openai_api_type:
-            openai.api_type = config.openai_api_type
-            openai.api_version = config.openai_api_version
+            litellm.api_type = config.openai_api_type
+            litellm.api_version = config.openai_api_version
         self.rpm = int(config.get("RPM", 10))
 
     async def _achat_completion_stream(self, messages: list[dict]) -> str:
-        response = await openai.ChatCompletion.acreate(
+        response = await litellm.acompletion(
             **self._cons_kwargs(messages),
             stream=True
         )
