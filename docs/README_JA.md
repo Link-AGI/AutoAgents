@@ -1,7 +1,7 @@
 # AutoAgents: エージェント自動生成のフレームワーク
 
 <p align="center">
-<a href=""><img src="docs/resources/logo-autoagents.jpg" alt="autoagents logo: A Framework for Automatic Agent Generation." width="150px"></a>
+<a href=""><img src="resources/logo-autoagents.jpg" alt="autoagents logo: A Framework for Automatic Agent Generation." width="150px"></a>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 AutoAgents は、LLM に基づいた自動エージェント生成実験のための実験的オープンソースアプリケーションです。このプログラムは、LLM によって駆動され、あなたが設定した目標を達成するためのマルチエージェントを自律的に生成します。
 
 <p align="center">
-    <img src=./docs/resources/framework2.jpg width="800">
+    <img src=./resources/framework2.jpg width="800">
 </p>
 
 ## <a name="updates"/> :boom: アップデート
@@ -118,7 +118,7 @@ docker run -it --rm -p 7860:7860 "${IMAGE}:${VERSION}"
 
 ## Wechat グループ
 
-<img src=".github/QRcode.jpg" alt="Wechat Group" width="200"/>
+<img src="../.github/QRcode.jpg" alt="Wechat Group" width="200"/>
 
 ## 謝辞
 このコードベースの [system](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/system)、[action_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/actions/action_bank)、[role_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/roles/role_bank) は、[MetaGPT](https://github.com/geekan/MetaGPT) を使って構築されています
