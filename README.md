@@ -21,7 +21,11 @@ AutoAgents is an experimental open-source application for An Automatic Agents Ge
 </p>
 
 ## <a name="updates"/> :boom: Updates
-- **2023.08.30**: Adding a custom agent collection, AgentBank, allows you to add custom agents. 
+- **2023.09.31**: 📝 We're excited to share our paper [AutoAgents: A Framework for Automatic Agent Generation](https://arxiv.org/abs/2309.17288) related to this repository.
+<p align="center">
+<img width="616" alt="The execution process of AutoAgents." src="docs/resources/process.jpg">
+</p> 
+- **2023.08.30**: 🚀 Adding a custom agent collection, AgentBank, allows you to add custom agents. 
 
 ## 🚀 Features
 - **Planner**: Determines the expert roles to be added and the specific execution plan according to the problem.
