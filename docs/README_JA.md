@@ -24,7 +24,7 @@ AutoAgents は、LLM に基づいた自動エージェント生成実験のた�
 ## <a name="updates"/> :boom: アップデート
 - **2023.09.31**: 📝 このリポジトリに関連する論文 [AutoAgents: A Framework for Automatic Agent Generation](https://arxiv.org/abs/2309.17288) を共有できることを嬉しく思います。
 <p align="center">
-<img width="616" alt="AutoAgent の実行プロセス。" src="docs/resources/process.jpg">
+<img width="616" alt="AutoAgent の実行プロセス。" src="./resources/process.jpg">
 </p>
 
 - **2023.08.30**: 🚀 カスタムエージェントコレクション、AgentBank を追加することで、カスタムエージェントを追加することができます。
@@ -39,7 +39,7 @@ AutoAgents は、LLM に基づいた自動エージェント生成実験のた�
 
 ## デモ
 オンラインデモ:
-- [Demo / HuggingFace Spaces](https://huggingface.co/spaces/LinkSoul/AutoAgents)
+- [Demo / Hugging Face Spaces](https://huggingface.co/spaces/LinkSoul/AutoAgents)
 
 ビデオデモ:
 - **噂の検証**
