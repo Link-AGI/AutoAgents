@@ -22,7 +22,12 @@ AutoAgents は、LLM に基づいた自動エージェント生成実験のた�
 </p>
 
 ## <a name="updates"/> :boom: アップデート
-- **2023.08.30**: カスタムエージェントコレクション、AgentBank を追加することで、カスタムエージェントを追加することができます。
+- **2023.09.31**: 📝 このリポジトリに関連する論文 [AutoAgents: A Framework for Automatic Agent Generation](https://arxiv.org/abs/2309.17288) を共有できることを嬉しく思います。
+<p align="center">
+<img width="616" alt="AutoAgent の実行プロセス。" src="docs/resources/process.jpg">
+</p>
+
+- **2023.08.30**: 🚀 カスタムエージェントコレクション、AgentBank を追加することで、カスタムエージェントを追加することができます。
 
 ## 🚀 特徴
 - **プランナー**: 問題に応じて、追加するエキスパートの役割と具体的な実行計画を決定します。
