@@ -49,6 +49,7 @@ Your final output should ALWAYS in the following format:
 2. By default, the plan is executed in the following order and no steps can be skipped.
 3. 'NextStep' can only include the name of expert roles with following execution step details, and cannot include other content.
 4. 'NecessaryInformation' can only include extracted important information from the history for the next step, and cannot include other content.
+5. Make sure you complete all the steps before finishing the task. DO NOT skip any steps or end the task prematurely.
 """
 
 FORMAT_EXAMPLE = '''

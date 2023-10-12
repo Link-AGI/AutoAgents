@@ -19,9 +19,12 @@ PROMPT_TEMPLATE = '''
 -----
 {role} Base on the following execution result of the previous agents and completed steps and their responses, complete the following tasks as best you can. 
 
-# Execution Result of Previous Agents {previous}
-
 # Task {context}
+
+# Suggestions
+{suggestions}
+
+# Execution Result of Previous Agents {previous}
 
 # Completed Steps and Responses {completed_steps} 
 
@@ -41,11 +44,17 @@ You have access to the following tools:
 file content
 >>>END
 ```
-4.2 If you think that the completed steps are enough to finish the task, use the action 'Final Output' and summarize all the previous step outputs and provide as much detailed final output to solve the task in the section 'ActionInput'. Please do your best to preserve the details of each step in the section 'ActionInput'.
+4.2 If you have completed all the steps required to finish the task, use the action 'Final Output' and summarize the outputs of each step in the section 'ActionInput'. Provide a detailed and comprehensive final output that solves the task in this section. Please try to retain the information from each step in the section 'ActionInput'. The final output in this section should be helpful, relevant, accurate, and detailed.
+
 
 # Format example
 Your final output should ALWAYS in the following format:
 {format_example}
+
+# Attention
+1. The input task you must finish is {context}
+2. DO NOT ask any questions to the user or human.
+3. The final output MUST be helpful, relevant, accurate, and detailed.
 -----
 '''
 
@@ -100,9 +109,9 @@ class CustomAction(Action):
             f.write(content)
         
     async def run(self, context):
-        steps = ''
-        for i, step in enumerate(list(self.steps)):
-            steps += str(i+1) + '. ' + step + '\n'
+        # steps = ''
+        # for i, step in enumerate(list(self.steps)):
+        #     steps += str(i+1) + '. ' + step + '\n'
 
         previous_context = re.findall(f'## Previous Steps and Responses([\s\S]*?)## Current Step', str(context))[0]
         task_context = re.findall('## Current Step([\s\S]*?)### Completed Steps and Responses', str(context))[0]
@@ -122,6 +131,7 @@ class CustomAction(Action):
             previous=previous_context,
             role=self.role_prompt,
             tool=str(tools),
+            suggestions=self.suggestions,
             completed_steps=completed_steps,
             format_example=FORMAT_EXAMPLE
         )
@@ -136,16 +146,17 @@ class CustomAction(Action):
         elif rsp.instruct_content.Action in self.tool:
             sas = SearchAndSummarize(serpapi_api_key=self.serpapi_api_key, llm=self.llm)
             sas_rsp = await sas.run(context=[Message(rsp.instruct_content.ActionInput)], system_text=SEARCH_AND_SUMMARIZE_SYSTEM_EN_US)
-            response = f"\n{sas_rsp}\n"
+            # response = f"\n{sas_rsp}\n"
+            response = f">>> Search Results\n{sas.result}\n\n>>> Search Summary\n{sas_rsp}"
         else:
             response = f"\n{rsp.instruct_content.ActionInput}\n"
 
         if 'Final Output' in rsp.instruct_content.Action:
-            info = f"\n## Step\n{task_context} \n\n## Response\n{response}\n"
+            info = f"\n## Step\n{task_context}\n## Response\n{completed_steps}>>>> Final Output\n{response}\n>>>>"
             output_class = ActionOutput.create_model_class("task", FINAL_OUTPUT_MAPPING)
             parsed_data = OutputParser.parse_data_with_mapping(info, FINAL_OUTPUT_MAPPING)
         else:
-            info = f"\n## Step\n{task_context} \n\n## Response\n{response}\n## Action\n{rsp.instruct_content.CurrentStep}\n"
+            info = f"\n## Step\n{task_context}\n## Response\n{response}\n## Action\n{rsp.instruct_content.CurrentStep}\n"
             output_class = ActionOutput.create_model_class("task", INTERMEDIATE_OUTPUT_MAPPING)
             parsed_data = OutputParser.parse_data_with_mapping(info, INTERMEDIATE_OUTPUT_MAPPING)
         

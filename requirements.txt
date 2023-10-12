@@ -9,6 +9,7 @@ meilisearch==0.21.0
 numpy==1.24.3
 openai==0.27.8
 litellm
+appdirs
 openpyxl
 pandas==1.4.1
 pydantic==1.10.7

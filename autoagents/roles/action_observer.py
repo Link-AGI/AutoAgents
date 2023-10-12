@@ -42,29 +42,6 @@ class ActionObserver(Role):
             self.next_step = self.steps[0] # rsp.instruct_content.NextStep
             next_state = 0
 
-            # if 'None' in self.next_step:
-            #     self.next_step = ''
-            #     self.next_role = ''
-            #     self.steps = ['']
-            #     self._set_state(0)
-
-            #     return None
-
-            # next_state, new_step = 0, True
-            # for i, step in enumerate(self.steps):
-            #     if self.next_step in step or step in self.next_step:
-            #         next_state = i
-            #         new_step = False
-            #         break
-
-            # if new_step:
-            #     next_state = 0
-            #     self.steps.insert(0, self.next_step)
-            
-            # _step = self.steps[next_state]
-            # self.steps.pop(next_state)
-            # self.steps.insert(0, _step)
-
             self.necessary_information = rsp.instruct_content.NecessaryInformation 
             print('*******Next Steps********')
             print(states_prompt)

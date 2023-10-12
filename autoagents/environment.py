@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 
 from .roles import Role
 from .actions import Requirement
-from .roles import CustomRole, ActionObserver, ROLES_LIST, ROLES_MAPPING
+from .roles import CustomRole, ActionObserver, Group, ROLES_LIST, ROLES_MAPPING
 
 from .system.memory import Memory
 from .system.schema import Message
@@ -71,7 +71,7 @@ class Environment(BaseModel):
     
     def _parser_plan(self, context):
         """解析生成的计划Plan"""
-        plan_context = re.findall('## Revised Execution Plan([\s\S]*?)##', str(context))[0]
+        plan_context = re.findall('## Execution Plan([\s\S]*?)##', str(context))[0]
         steps = [v.split("\n")[0] for v in re.split("\n\d+\. ", plan_context)[1:]]
         print('---------------Steps---------------')
         for i, step in enumerate(steps):
@@ -83,43 +83,46 @@ class Environment(BaseModel):
     def create_roles(self, plan: list, args: dict):
         """创建Role""" 
 
-        existing_roles = dict()
-        for item in ROLES_LIST:
-            existing_roles[item['name']] = item
+        requirement_type = type('Requirement_Group', (Requirement,), {})
+        self.add_role(Group(roles=args, steps=plan, watch_actions=[Requirement,requirement_type],  proxy=self.proxy, serpapi_api_key=self.serpapi_key, llm_api_key=self.llm_api_key))
+
+        # existing_roles = dict()
+        # for item in ROLES_LIST:
+        #     existing_roles[item['name']] = item
                 
-        init_actions, watch_actions = [], []
-        for role in args:
-            class_name = role['name'].replace(' ', '_') + '_Requirement'
-            requirement_type = type(class_name, (Requirement,), {})
-            if role['name'] in existing_roles.keys():
-                print('Add a predefiend role:', role['name'])
-                role_object = ROLES_MAPPING[role['name']]
-                if 'Engineer' in role['name']:
-                    _role = role_object(n_borg=2, use_code_review=True, proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
-                else:
-                    _role = role_object(watch_actions=[requirement_type], proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
-            else:
-                print('Add a new role:', role['name'])
-                _role = CustomRole(
-                    name=role['name'],
-                    profile=role['name'],
-                    goal=role['description'],
-                    role_prompt=role['prompt'],
-                    steps=role['steps'],
-                    tool=role['tools'],
-                    watch_actions=[requirement_type],
-                    proxy=self.proxy,
-                    llm_api_key=self.llm_api_key,
-                    serpapi_api_key=self.serpapi_key,
-                )
+        # init_actions, watch_actions = [], []
+        # for role in args:
+        #     class_name = role['name'].replace(' ', '_') + '_Requirement'
+        #     requirement_type = type(class_name, (Requirement,), {})
+        #     if role['name'] in existing_roles.keys():
+        #         print('Add a predefiend role:', role['name'])
+        #         role_object = ROLES_MAPPING[role['name']]
+        #         if 'Engineer' in role['name']:
+        #             _role = role_object(n_borg=2, use_code_review=True, proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
+        #         else:
+        #             _role = role_object(watch_actions=[requirement_type], proxy=self.proxy, llm_api_key=self.llm_api_key, serpapi_api_key=self.serpapi_key)
+        #     else:
+        #         print('Add a new role:', role['name'])
+        #         _role = CustomRole(
+        #             name=role['name'],
+        #             profile=role['name'],
+        #             goal=role['description'],
+        #             role_prompt=role['prompt'],
+        #             steps=role['steps'],
+        #             tool=role['tools'],
+        #             watch_actions=[requirement_type],
+        #             proxy=self.proxy,
+        #             llm_api_key=self.llm_api_key,
+        #             serpapi_api_key=self.serpapi_key,
+        #         )
                 
-            self.add_role(_role)
-            watch_actions.append(requirement_type)
-            init_actions.append(_role.init_actions)
+        #     self.add_role(_role)
+        #     watch_actions.append(requirement_type)
+        #     init_actions.append(_role.init_actions)
             
         
-        init_actions.append(Requirement)
-        self.add_role(ActionObserver(steps=plan, watch_actions=init_actions, init_actions=watch_actions, proxy=self.proxy, llm_api_key=self.llm_api_key))
+        # init_actions.append(Requirement)
+        # self.add_role(ActionObserver(steps=plan, watch_actions=init_actions, init_actions=watch_actions, proxy=self.proxy, llm_api_key=self.llm_api_key))
 
     async def publish_message(self, message: Message):
         """向当前环境发布信息"""
@@ -127,8 +130,9 @@ class Environment(BaseModel):
         self.memory.add(message)
         self.history += f"\n{message}"
 
-        if 'Plan Observer' in message.role:
+        if 'Manager' in message.role:
             self.steps = self._parser_plan(message.content)
+            self.new_roles_args = self._parser_roles(message.content)
             self.new_roles = self.create_roles(self.steps, self.new_roles_args)
 
         filename, file_content = None, None
@@ -157,7 +161,7 @@ class Environment(BaseModel):
                 self.alg_msg_queue.put_nowait(format_message(action=MessageType.RunTask.value, data={'task_id': self.task_id, 'task_message':msg}))
         
         if 'Agents Observer' in message.role:
-            self.new_roles_args = self._parser_roles(message.content)
+            
             # send role list
             msg = {   
                 'timestamp': timestamp(),
@@ -188,7 +192,7 @@ class Environment(BaseModel):
             await asyncio.gather(*futures)
 
         if len(old_roles) < len(self.roles):
-            while len(self.get_role(name='ActionObserver').steps) > 0:
+            while len(self.get_role(name='Group').steps) > 0:
                 futures = []
                 for key in self.roles.keys():
                     if key not in old_roles:
