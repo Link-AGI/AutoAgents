@@ -75,7 +75,7 @@ cp config/config.yaml config/key.yaml
 ### Usage
 - Commandline mode:
 ```python
-python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serapi_key YOUR_SERAPI_KEY --idea "Is LK-99 really a room temperature superconducting material?"
+python main.py --mode commandline --llm_api_key YOUR_OPENAI_API_KEY --serpapi_key YOUR_SERPAPI_KEY --idea "Is LK-99 really a room temperature superconducting material?"
 ```
 - Websocket service mode:
 ```python
