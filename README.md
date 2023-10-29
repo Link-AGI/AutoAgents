@@ -15,7 +15,7 @@
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
 
-AutoAgents is an experimental open-source application for An Automatic Agents Generation Experiment based on LLM. This program, driven by LLM, autonomously generates multi-agents to achieve whatever goal you set.
+AutoAgents is an experimental open-source application for an Automatic Agents Generation Experiment based on LLM. This program, driven by LLM, autonomously generates multi-agents to achieve whatever goal you set.
 
 <p align="center">
     <img src=./docs/resources/framework2.jpg width="800">
