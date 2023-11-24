@@ -1,7 +1,7 @@
 # AutoAgents: A Framework for Automatic Agent Generation
 
 <p align="center">
-<a href=""><img src="docs/resources/logo-autoagents.jpg" alt="autoagents logo: A Framework for Automatic Agent Generation." width="150px"></a>
+<a href="https://arxiv.org/abs/2309.17288"><img src="docs/resources/logo-autoagents.jpg" alt="autoagents logo: A Framework for Automatic Agent Generation." width="150px"></a>
 </p>
 
 <p align="center">
@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+<a href="https://arxiv.org/abs/2309.17288"><img src="https://img.shields.io/badge/PAPER-arXiv" alt="Paper"></a>
 <a href="docs/README_CN.md"><img src="https://img.shields.io/badge/文档-中文版-blue.svg" alt="CN doc"></a>
 <a href="README.md"><img src="https://img.shields.io/badge/document-English-blue.svg" alt="EN doc"></a>
 <a href="docs/README_JA.md"><img src="https://img.shields.io/badge/ドキュメント-日本語-blue.svg" alt="JA doc"></a>
@@ -96,6 +97,33 @@ docker run -it --rm -p 7860:7860 "${IMAGE}:${VERSION}"
 ```
 - Open http://127.0.0.1:7860 in the browser.
 
+## Contributing
+AutoAgents is dedicated to creating a cutting-edge automated multi-agent environment for large language models. We are actively seeking enthusiastic collaborators to embark with us on this thrilling and innovative journey.
+
+This project exists thanks to all the people who contribute:
+<a href="https://github.com/iCGY96"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/shiyemin"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/s1w3"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/TabbbSY"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/ishaan-jaff"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/Jaykef"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/PentesterPriyanshu"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/harshhere905"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/hrushik98"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+
+
+## How Can You Contribute?
+- **Issue Reporting and Pull Requests**: Encountering difficulties with AutoAgents? Feel free to raise the issue in English. Additionally, you're welcome to take initiative by resolving these issues yourself. Simply request to be assigned the issue, and upon resolution, submit a pull request (PR) with your solution.
+  
+- **Software Development Contributions**: As an engineer, your skills can significantly enhance AutoAgents. We are in constant pursuit of skilled developers to refine, optimize, and expand our framework, enriching our feature set and devising new modules.
+
+- **Content Creation for Documentation and Tutorials**: If writing is your forte, join us in improving our documentation and developing tutorials or blog posts. Your contribution will make AutoAgents more user-friendly and accessible to a diverse audience.
+
+- **Innovative Application Exploration**: Intrigued by the prospects of multi-agent systems? If you're keen to experiment with AutoAgents, we're excited to support your endeavors and curious to see your innovative creations.
+
+- **User Feedback and Strategic Suggestions**: We highly value user input. Engage with AutoAgents and share your feedback. Your insights are crucial for ongoing enhancements, ensuring our framework's excellence and relevance.
+
 ## Contact Information
 
 If you have any questions or feedback about this project, please feel free to contact us. We highly appreciate your suggestions!
@@ -129,3 +157,11 @@ If you find our work and this repository useful, please consider giving a star :
 The [system](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/system), [action_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/actions/action_bank) and [role_bank](https://github.com/LinkSoul-AI/AutoAgents/tree/main/autoagents/roles/role_bank) of this code base is built using [MetaGPT](https://github.com/geekan/MetaGPT)
 
 Icons in the framework made by Darius Dan, Freepik, kmg design, Flat Icons, Vectorslab from [FlatIcon](https://www.flaticon.com)
+
+---
+
+<p align="center">
+  <a href="https://star-history.com/#Link-AGI/AutoAgents&Date">
+    <img src="https://api.star-history.com/svg?repos=Link-AGI/AutoAgents&type=Date" alt="Star History Chart">
+  </a>
+</p>
