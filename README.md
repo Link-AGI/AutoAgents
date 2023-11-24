@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<a href="https://arxiv.org/abs/2309.17288"><img src="https://img.shields.io/badge/cs.CV-2306.14899-b31b1b?logo=arxiv&logoColor=red" alt="Paper"></a>
+<a href="https://arxiv.org/abs/2309.17288"><img src="https://img.shields.io/badge/cs.CV-2309.17288-b31b1b?logo=arxiv&logoColor=red" alt="Paper"></a>
 <a href="docs/README_CN.md"><img src="https://img.shields.io/badge/文档-中文版-blue.svg" alt="CN doc"></a>
 <a href="README.md"><img src="https://img.shields.io/badge/document-English-blue.svg" alt="EN doc"></a>
 <a href="docs/README_JA.md"><img src="https://img.shields.io/badge/ドキュメント-日本語-blue.svg" alt="JA doc"></a>
