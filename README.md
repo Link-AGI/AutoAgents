@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<a href="https://arxiv.org/abs/2309.17288"><img src="https://img.shields.io/badge/PAPER-arXiv" alt="Paper"></a>
+<a href="https://arxiv.org/abs/2309.17288"><img src="https://img.shields.io/badge/cs.CV-2306.14899-b31b1b?logo=arxiv&logoColor=red" alt="Paper"></a>
 <a href="docs/README_CN.md"><img src="https://img.shields.io/badge/文档-中文版-blue.svg" alt="CN doc"></a>
 <a href="README.md"><img src="https://img.shields.io/badge/document-English-blue.svg" alt="EN doc"></a>
 <a href="docs/README_JA.md"><img src="https://img.shields.io/badge/ドキュメント-日本語-blue.svg" alt="JA doc"></a>
@@ -101,16 +101,17 @@ docker run -it --rm -p 7860:7860 "${IMAGE}:${VERSION}"
 AutoAgents is dedicated to creating a cutting-edge automated multi-agent environment for large language models. We are actively seeking enthusiastic collaborators to embark with us on this thrilling and innovative journey.
 
 This project exists thanks to all the people who contribute:
-<a href="https://github.com/iCGY96"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/shiyemin"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/s1w3"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/TabbbSY"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/ishaan-jaff"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/Jaykef"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/PentesterPriyanshu"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/harshhere905"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
-<a href="https://github.com/hrushik98"><img src="https://avatars.githubusercontent.com/u/75533759?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+
+<a href="https://github.com/iCGY96"><img src="https://avatars.githubusercontent.com/u/28098248?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/shiyemin"><img src="https://avatars.githubusercontent.com/u/1501158?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/s1w3"><img src="https://avatars.githubusercontent.com/u/140045858?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/TabbbSY"><img src="https://avatars.githubusercontent.com/u/140036442?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/ishaan-jaff"><img src="https://avatars.githubusercontent.com/u/29436595?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/Jaykef"><img src="https://avatars.githubusercontent.com/u/11355002?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/PentesterPriyanshu"><img src="https://avatars.githubusercontent.com/u/98478305?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/harshhere905"><img src="https://avatars.githubusercontent.com/u/124420199?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
+<a href="https://github.com/hrushik98"><img src="https://avatars.githubusercontent.com/u/91076764?v=4" alt="Contributor" style="width:5%; border-radius: 50%;"/></a>
 
 
 ## How Can You Contribute?
