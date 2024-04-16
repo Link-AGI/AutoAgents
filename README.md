@@ -23,6 +23,7 @@ AutoAgents is an experimental open-source application for an Automatic Agents Ge
 </p>
 
 ## <a name="updates"/> :boom: Updates
+- **2024.04.16**: We're super excited to announce that our paper got accepted at IJCAI 2024. More updates will be coming soon!
 - **2023.09.31**: 📝 We're excited to share our paper [AutoAgents: A Framework for Automatic Agent Generation](https://arxiv.org/abs/2309.17288) related to this repository.
 <p align="center">
 <img width="616" alt="The execution process of AutoAgents." src="docs/resources/process.jpg">
