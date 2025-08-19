@@ -141,11 +141,25 @@ We will respond to all questions within 2-3 business days.
 
 ## Citation
 
-If you find our work and this repository useful, please consider giving a star :star: and citation :beer::
+If you find our work and this repository useful, please consider giving us a star :star: and a citation :beer::
+
 ```bibtex
+@inproceedings{ijcai2024p3,
+  title     = {{AutoAgents}: A Framework for Automatic Agent Generation},
+  author    = {Chen, Guangyao and Dong, Siwei and Shu, Yu and Zhang, Ge and Sesay, Jaward and Karlsson, Börje F. and Fu, Jie and Shi, Yemin},
+  booktitle = {Proceedings of the Thirty-Third International Joint Conference on
+               Artificial Intelligence, {IJCAI-24}},
+  pages     = {22--30},
+  year      = {2024},
+  month     = {8},
+  note      = {Main Track},
+  doi       = {10.24963/ijcai.2024/3},
+  url       = {https://doi.org/10.24963/ijcai.2024/3},
+}
+
 @article{chen2023auto,
   title={AutoAgents: The Automatic Agents Generation Framework},
-  author={Chen, Guangyao and Dong, Siwei and Shu, Yu and Zhang, Ge and Jaward, Sesay and Börje, Karlsson and Fu, Jie and Shi, Yemin},
+  author={Chen, Guangyao and Dong, Siwei and Shu, Yu and Zhang, Ge and Sesay, Jaward and Karlsson, Börje F. and Fu, Jie and Shi, Yemin},
   journal={arXiv preprint},
   year={2023}
 }
